@@ -1,26 +1,166 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-dark: #050A0F;
+  --color-dark-light: #0A1219;
+  --color-dark-card: #0F1922;
+  --color-dark-border: #12222F;
+  --color-dark-border-light: #1E3A4F;
+  --color-dark-border-subtle: #1A2A38;
+  --color-muted: #6B8299;
+  --color-muted-dark: #4A6578;
+  --color-muted-darker: #3A5568;
+  --color-muted-darkest: #2A4050;
+  --color-light: #E8ECF1;
+  --color-light-muted: #8BA3B8;
+  --color-primary: #F97316;
+  --color-primary-dark: #EA580C;
+  --color-success: #22C55E;
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-dark);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-dark-light);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-dark-border-light);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+  }
+
+  body {
+    background: var(--color-dark);
+    color: var(--color-light);
+    font-family: var(--font-sans);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@layer components {
+  /* Nav link underline */
+  .nav-link {
+    position: relative;
+    cursor: pointer;
+    padding: 4px 0;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--color-primary);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-primary);
+  }
+
+  /* Stat card shimmer */
+  .stat-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(249,115,22,0.03), transparent);
+    animation: shimmer 4s infinite;
+  }
+
+  /* Testimonial quote */
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: var(--font-display);
+    font-size: 120px;
+    color: rgba(249,115,22,0.08);
+    line-height: 1;
+  }
+
+  /* Timeline dot pulse */
+  .timeline-dot::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(249,115,22,0.2);
+    animation: pulse-ring 2s infinite;
+  }
+
+  /* CTA button ripple */
+  .cta-btn {
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    transition: all 0.5s;
+    transform: translate(-50%, -50%);
+  }
+  .cta-btn:hover::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Section label dash */
+  .section-label::before {
+    content: '';
+    width: 30px;
+    height: 1.5px;
+    background: var(--color-primary);
+  }
 }
