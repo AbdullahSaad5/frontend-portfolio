@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView } from "@/hooks/use-in-view";
+import { motion } from "framer-motion";
 
 interface SectionProps {
   children: React.ReactNode;
@@ -9,19 +9,19 @@ interface SectionProps {
 }
 
 export function Section({ children, className = "", delay = 0 }: SectionProps) {
-  const [ref, inView] = useInView(0.1);
-
   return (
-    <div
-      ref={ref}
+    <motion.div
       className={className}
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(50px)",
-        transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{
+        duration: 0.8,
+        delay,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

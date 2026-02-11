@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ArrowRight, Flag, Globe, Zap } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { heroHighlights } from "@/data/portfolio";
+
+const highlightIcons = [Flag, Globe, Zap];
 
 export function Hero() {
   const [scrollY, setScrollY] = useState(0);
@@ -58,9 +61,7 @@ export function Hero() {
               onClick={() => scrollTo("contact")}
             >
               Let&apos;s Work Together
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              <ArrowRight size={16} strokeWidth={2.5} />
             </button>
             <button
               className="inline-flex items-center gap-2.5 px-9 py-[15px] bg-transparent text-light border-[1.5px] border-dark-border-light rounded-full text-[15px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:border-primary hover:text-primary hover:-translate-y-0.5"
@@ -73,20 +74,23 @@ export function Hero() {
 
         <Section delay={0.5}>
           <div className="flex justify-center gap-12 mt-16 flex-wrap">
-            {heroHighlights.map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3.5 opacity-70 hover:opacity-100 transition-opacity duration-300"
-              >
-                <span className="text-[28px]">{item.icon}</span>
-                <div className="text-left">
-                  <div className="text-sm font-semibold text-light">
-                    {item.label}
+            {heroHighlights.map((item, i) => {
+              const Icon = highlightIcons[i];
+              return (
+                <div
+                  key={i}
+                  className="flex items-center gap-3.5 opacity-70 hover:opacity-100 transition-opacity duration-300"
+                >
+                  <Icon className="text-primary" size={28} />
+                  <div className="text-left">
+                    <div className="text-sm font-semibold text-light">
+                      {item.label}
+                    </div>
+                    <div className="text-xs text-muted-dark">{item.sub}</div>
                   </div>
-                  <div className="text-xs text-muted-dark">{item.sub}</div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </Section>
       </div>

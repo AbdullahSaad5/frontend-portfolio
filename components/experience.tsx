@@ -1,5 +1,6 @@
 "use client";
 
+import { Star } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { experiences } from "@/data/portfolio";
 
@@ -92,8 +93,8 @@ export function Experience() {
               , but the whole team really rocks!
             </p>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-dark-border-light to-dark-border text-base font-bold text-primary">
-                ★
+              <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-dark-border-light to-dark-border">
+                <Star className="text-primary" size={16} fill="currentColor" />
               </div>
               <div>
                 <div className="text-sm font-semibold">

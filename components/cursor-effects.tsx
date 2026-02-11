@@ -1,28 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CursorEffects() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 150, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 150, damping: 20 });
 
   useEffect(() => {
-    const handleMouse = (e: MouseEvent) =>
-      setMousePos({ x: e.clientX, y: e.clientY });
+    const handleMouse = (e: MouseEvent) => {
+      mouseX.set(e.clientX - 200);
+      mouseY.set(e.clientY - 200);
+    };
     window.addEventListener("mousemove", handleMouse, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouse);
-  }, []);
+  }, [mouseX, mouseY]);
 
   return (
     <>
       {/* Cursor glow */}
-      <div
+      <motion.div
         className="fixed w-[400px] h-[400px] rounded-full pointer-events-none z-0"
         style={{
           background:
             "radial-gradient(circle, rgba(249,115,22,0.04) 0%, transparent 70%)",
-          left: mousePos.x - 200,
-          top: mousePos.y - 200,
-          transition: "left 0.15s ease-out, top 0.15s ease-out",
+          left: springX,
+          top: springY,
         }}
       />
 

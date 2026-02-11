@@ -1,8 +1,11 @@
 "use client";
 
+import { Calendar, Rocket, Building2, Globe } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { stats } from "@/data/portfolio";
+
+const statIcons = [Calendar, Rocket, Building2, Globe];
 
 export function About() {
   return (
@@ -59,20 +62,25 @@ export function About() {
         <div>
           <Section delay={0.2}>
             <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="stat-card text-center p-8 rounded-2xl bg-gradient-to-br from-dark-card/80 to-dark-light/90 border border-dark-border transition-all duration-[400ms] hover:border-primary hover:-translate-y-1"
-                >
-                  <div className="text-2xl mb-3">{stat.icon}</div>
-                  <div className="font-display text-[32px] font-bold text-light mb-1">
-                    <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+              {stats.map((stat, i) => {
+                const Icon = statIcons[i];
+                return (
+                  <div
+                    key={i}
+                    className="stat-card text-center p-8 rounded-2xl bg-gradient-to-br from-dark-card/80 to-dark-light/90 border border-dark-border transition-all duration-[400ms] hover:border-primary hover:-translate-y-1"
+                  >
+                    <div className="mb-3 flex justify-center">
+                      <Icon className="text-primary" size={24} />
+                    </div>
+                    <div className="font-display text-[32px] font-bold text-light mb-1">
+                      <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                    </div>
+                    <div className="text-xs text-muted-dark uppercase tracking-[1.5px] font-mono">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-dark uppercase tracking-[1.5px] font-mono">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </Section>
         </div>

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { Target } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import { useInView } from "@/hooks/use-in-view";
 import { skills, tools } from "@/data/portfolio";
 
 function SkillBar({ skill, index, hoveredSkill, setHoveredSkill }: {
@@ -11,7 +12,7 @@ function SkillBar({ skill, index, hoveredSkill, setHoveredSkill }: {
   hoveredSkill: number | null;
   setHoveredSkill: (i: number | null) => void;
 }) {
-  const [ref, inView] = useInView(0.2);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
     <Section delay={index * 0.08}>
@@ -112,7 +113,7 @@ export function Skills() {
             <Section delay={0.35}>
               <div className="mt-10 p-7 rounded-2xl bg-primary/4 border border-primary/10">
                 <div className="flex items-center gap-2.5 mb-3">
-                  <span className="text-xl">🎯</span>
+                  <Target className="text-primary" size={20} />
                   <span className="font-semibold text-[15px]">
                     What I&apos;m Looking For
                   </span>

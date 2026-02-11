@@ -38,26 +38,26 @@ export const navItems = [
 ];
 
 export const heroHighlights = [
-  { icon: "🇺🇸", label: "US Startup", sub: "Experience" },
-  { icon: "🌍", label: "Fully Remote", sub: "Since Day 1" },
-  { icon: "⚡", label: "AI & Automation", sub: "Specialist" },
+  { label: "US Startup", sub: "Experience" },
+  { label: "Fully Remote", sub: "Since Day 1" },
+  { label: "AI & Automation", sub: "Specialist" },
 ];
 
 export const stats = [
-  { target: 1, suffix: ".5+", label: "Years Experience", icon: "📅" },
-  { target: 15, suffix: "+", label: "Projects Delivered", icon: "🚀" },
-  { target: 6, suffix: "+", label: "Industry Verticals", icon: "🏢" },
-  { target: 100, suffix: "%", label: "Remote Track Record", icon: "🌐" },
+  { target: 1, suffix: ".5+", label: "Years Experience" },
+  { target: 15, suffix: "+", label: "Projects Delivered" },
+  { target: 6, suffix: "+", label: "Industry Verticals" },
+  { target: 100, suffix: "%", label: "Remote Track Record" },
 ];
 
 export const contactInfo = [
-  { label: "Location", value: "Rawalpindi, Pakistan", icon: "📍" },
-  { label: "Timezone", value: "PKT (GMT+5)", icon: "🕐" },
-  { label: "Availability", value: "Flexible / US hours", icon: "✅" },
+  { label: "Location", value: "Rawalpindi, Pakistan" },
+  { label: "Timezone", value: "PKT (GMT+5)" },
+  { label: "Availability", value: "Flexible / US hours" },
 ];
 
 export const marqueeItems = [
-  "Technical Project Management", "★", "AI Automation", "★", "Agile / Scrum", "★",
-  "Remote Team Leadership", "★", "Cross-Timezone Delivery", "★", "Stakeholder Management", "★",
-  "Sprint Planning", "★", "Cloud Architecture", "★", "Agentic AI", "★", "SaaS Development", "★",
+  "Technical Project Management", "AI Automation", "Agile / Scrum",
+  "Remote Team Leadership", "Cross-Timezone Delivery", "Stakeholder Management",
+  "Sprint Planning", "Cloud Architecture", "Agentic AI", "SaaS Development",
 ];

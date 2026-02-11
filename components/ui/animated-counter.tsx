@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useInView } from "@/hooks/use-in-view";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 interface AnimatedCounterProps {
   target: number;
@@ -9,30 +9,12 @@ interface AnimatedCounterProps {
   duration?: number;
 }
 
-export function AnimatedCounter({ target, suffix = "", duration = 2000 }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0);
-  const [ref, inView] = useInView(0.3);
-
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target, duration]);
+export function AnimatedCounter({ target, suffix = "", duration = 2 }: AnimatedCounterProps) {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
     <span ref={ref}>
-      {count}
-      {suffix}
+      {inView ? <CountUp end={target} duration={duration} suffix={suffix} /> : `0${suffix}`}
     </span>
   );
 }
