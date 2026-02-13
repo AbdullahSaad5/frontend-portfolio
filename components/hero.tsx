@@ -1,14 +1,43 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowRight, Flag, Globe, Zap } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Flag, Globe, Zap, ChevronDown } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { Magnetic } from "@/components/ui/magnetic";
 import { heroHighlights } from "@/data/portfolio";
 
 const highlightIcons = [Flag, Globe, Zap];
 
+const wordRevealVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const wordChild = {
+  hidden: {
+    y: "100%",
+    opacity: 0,
+  },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  },
+};
+
 export function Hero() {
   const [scrollY, setScrollY] = useState(0);
+  const { scrollYProgress } = useScroll();
+  const titleY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
+  const subtitleY = useTransform(scrollYProgress, [0, 0.3], [0, -30]);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -26,49 +55,80 @@ export function Hero() {
       className="min-h-screen flex items-center justify-center relative px-10 pt-[120px] pb-20"
     >
       <div className="max-w-[900px] text-center relative z-[2]">
-        <Section>
+        {/* Availability badge */}
+        <motion.div
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/8 border border-primary/15 text-[13px] text-primary mb-8 font-mono tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-success animate-[pulse-ring_2s_infinite]" />
             Open to remote opportunities
           </div>
-        </Section>
+        </motion.div>
 
-        <Section delay={0.1}>
-          <h1 className="font-display text-[72px] max-md:text-4xl font-bold leading-[1.08] mb-6 tracking-[-1px]">
-            <span className="text-muted font-normal italic text-[0.6em] block mb-2">
-              Hi, I&apos;m
-            </span>
-            Eisha Kamran
-            <span className="text-primary">.</span>
-          </h1>
-        </Section>
+        {/* Title with word-by-word reveal */}
+        <motion.div style={{ y: titleY }}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.7 }}
+          >
+            <h1 className="font-display text-[72px] max-md:text-4xl font-bold leading-[1.08] mb-6 tracking-[-1px]">
+              <span className="text-muted font-normal italic text-[0.6em] block mb-2">
+                Hi, I&apos;m
+              </span>
+              <motion.span
+                className="inline-flex flex-wrap justify-center gap-x-4 gradient-text-hero"
+                variants={wordRevealVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {["Eisha", "Kamran"].map((word, i) => (
+                  <span key={i} className="overflow-hidden inline-block">
+                    <motion.span className="inline-block" variants={wordChild}>
+                      {word}
+                    </motion.span>
+                  </span>
+                ))}
+              </motion.span>
+              <span className="text-primary">.</span>
+            </h1>
+          </motion.div>
+        </motion.div>
 
-        <Section delay={0.2}>
-          <p className="text-xl max-md:text-base text-muted leading-[1.7] max-w-[620px] mx-auto mb-10 font-light">
-            Technical Project Manager building{" "}
-            <span className="text-light font-medium">
-              AI & automation systems
-            </span>{" "}
-            for US clients. Bridging timezones, shipping products, and turning
-            complex problems into elegant solutions — all remotely from Pakistan.
-          </p>
-        </Section>
+        <motion.div style={{ y: subtitleY }}>
+          <Section delay={0.2} variant="blur">
+            <p className="text-xl max-md:text-base text-muted leading-[1.7] max-w-[620px] mx-auto mb-10 font-light">
+              Technical Project Manager building{" "}
+              <span className="text-light font-medium">
+                AI & automation systems
+              </span>{" "}
+              for US clients. Bridging timezones, shipping products, and turning
+              complex problems into elegant solutions — all remotely from Pakistan.
+            </p>
+          </Section>
+        </motion.div>
 
-        <Section delay={0.3}>
+        <Section delay={0.3} variant="blur">
           <div className="flex gap-4 justify-center flex-wrap">
-            <button
-              className="cta-btn inline-flex items-center gap-2.5 px-9 py-4 bg-gradient-to-br from-primary to-primary-dark text-white border-none rounded-full text-[15px] font-semibold cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(249,115,22,0.3)]"
-              onClick={() => scrollTo("contact")}
-            >
-              Let&apos;s Work Together
-              <ArrowRight size={16} strokeWidth={2.5} />
-            </button>
-            <button
-              className="inline-flex items-center gap-2.5 px-9 py-[15px] bg-transparent text-light border-[1.5px] border-dark-border-light rounded-full text-[15px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:border-primary hover:text-primary hover:-translate-y-0.5"
-              onClick={() => scrollTo("experience")}
-            >
-              View My Work
-            </button>
+            <Magnetic strength={0.2}>
+              <button
+                className="cta-btn inline-flex items-center gap-2.5 px-9 py-4 bg-gradient-to-br from-primary to-primary-dark text-white border-none rounded-full text-[15px] font-semibold cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(249,115,22,0.3)]"
+                onClick={() => scrollTo("contact")}
+              >
+                Let&apos;s Work Together
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </button>
+            </Magnetic>
+            <Magnetic strength={0.15}>
+              <button
+                className="inline-flex items-center gap-2.5 px-9 py-[15px] bg-transparent text-light border-[1.5px] border-dark-border-light rounded-full text-[15px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:border-primary hover:text-primary hover:-translate-y-0.5"
+                onClick={() => scrollTo("experience")}
+              >
+                View My Work
+              </button>
+            </Magnetic>
           </div>
         </Section>
 
@@ -95,7 +155,7 @@ export function Hero() {
         </Section>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Animated scroll indicator */}
       <div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500"
         style={{ opacity: scrollY > 100 ? 0 : 0.5 }}
@@ -103,7 +163,12 @@ export function Hero() {
         <span className="text-[11px] tracking-[3px] uppercase text-muted-dark font-mono">
           Scroll
         </span>
-        <div className="w-px h-10 bg-gradient-to-b from-muted-dark to-transparent" />
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown size={16} className="text-muted-dark" />
+        </motion.div>
       </div>
     </section>
   );

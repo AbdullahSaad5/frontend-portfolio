@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import { Target } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { skills, tools } from "@/data/portfolio";
@@ -52,13 +53,36 @@ function SkillBar({ skill, index, hoveredSkill, setHoveredSkill }: {
   );
 }
 
+function ToolTag({ tool, index }: { tool: string; index: number }) {
+  return (
+    <motion.span
+      initial={{ opacity: 0, y: 10, rotate: Math.random() * 4 - 2 }}
+      whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.04,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      whileHover={{
+        y: -4,
+        scale: 1.05,
+        transition: { type: "spring", stiffness: 400, damping: 15 },
+      }}
+      className="inline-flex items-center px-[18px] py-2 rounded-full text-[13px] font-mono tracking-[0.5px] border border-dark-border-subtle bg-dark-card/60 text-light-muted backdrop-blur-[10px] transition-colors duration-300 hover:border-primary hover:text-primary hover:bg-primary/5 cursor-default"
+    >
+      {tool}
+    </motion.span>
+  );
+}
+
 export function Skills() {
   const [hoveredSkill, setHoveredSkill] = useState<number | null>(null);
 
   return (
     <section id="skills" className="py-[120px] px-10">
       <div className="max-w-[1100px] mx-auto">
-        <Section>
+        <Section variant="blur">
           <div className="text-center mb-16">
             <div className="section-label font-mono text-xs tracking-[4px] uppercase text-primary mb-4 flex items-center gap-3 justify-center">
               Skills & Tools
@@ -72,7 +96,7 @@ export function Skills() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {/* Skill Bars */}
           <div>
-            <Section>
+            <Section variant="fade-left">
               <h3 className="text-lg font-semibold mb-8 text-light-muted">
                 Core Competencies
               </h3>
@@ -92,23 +116,16 @@ export function Skills() {
 
           {/* Tools */}
           <div>
-            <Section>
+            <Section variant="fade-right">
               <h3 className="text-lg font-semibold mb-8 text-light-muted">
                 Tools & Technologies
               </h3>
             </Section>
-            <Section delay={0.2}>
-              <div className="flex flex-wrap gap-2.5">
-                {tools.map((tool, i) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center px-[18px] py-2 rounded-full text-[13px] font-mono tracking-[0.5px] border border-dark-border-subtle bg-dark-card/60 text-light-muted backdrop-blur-[10px] transition-all duration-300 hover:border-primary hover:text-primary hover:-translate-y-0.5 hover:bg-primary/5 cursor-default"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
-            </Section>
+            <div className="flex flex-wrap gap-2.5">
+              {tools.map((tool, i) => (
+                <ToolTag key={i} tool={tool} index={i} />
+              ))}
+            </div>
 
             <Section delay={0.35}>
               <div className="mt-10 p-7 rounded-2xl bg-primary/4 border border-primary/10">

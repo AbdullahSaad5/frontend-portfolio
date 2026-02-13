@@ -46,6 +46,16 @@
     color: var(--color-light);
     font-family: var(--font-sans);
   }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
 }
 
 /* Animations */
@@ -61,8 +71,31 @@
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 @layer components {
+  /* Animated gradient text for hero name */
+  .gradient-text-hero {
+    background: linear-gradient(
+      90deg,
+      #F97316,
+      #FB923C,
+      #FDBA74,
+      #F97316,
+      #EA580C,
+      #F97316
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+
   /* Nav link underline */
   .nav-link {
     position: relative;
@@ -158,5 +191,15 @@
     width: 30px;
     height: 1.5px;
     background: var(--color-primary);
+  }
+
+  /* Contact section animated grid */
+  .contact-grid-bg {
+    background-image:
+      linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 50% 80%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 80%, black 20%, transparent 70%);
   }
 }
