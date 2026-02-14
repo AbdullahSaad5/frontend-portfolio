@@ -35,7 +35,7 @@ export function TiltCard({ children, className = "", tiltAmount = 8 }: TiltCardP
   return (
     <motion.div
       ref={ref}
-      className={`relative ${className}`}
+      className={`relative ${className} h-full`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{

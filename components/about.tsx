@@ -67,7 +67,7 @@ export function About() {
                 const Icon = statIcons[i];
                 return (
                   <TiltCard key={i}>
-                    <div className="stat-card text-center p-8 rounded-2xl bg-gradient-to-br from-dark-card/80 to-dark-light/90 border border-dark-border transition-all duration-[400ms] hover:border-primary hover:-translate-y-1">
+                    <div className="stat-card h-full text-center p-8 rounded-2xl bg-gradient-to-br from-dark-card/80 to-dark-light/90 border border-dark-border transition-all duration-[400ms] hover:border-primary hover:-translate-y-1">
                       <div className="mb-3 flex justify-center">
                         <Icon className="text-primary" size={24} />
                       </div>
