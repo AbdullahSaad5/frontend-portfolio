@@ -2,48 +2,58 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Flag, Globe, Zap, ChevronDown } from "lucide-react";
+import { ArrowRight, Flag, Globe, Zap, ChevronDown, Download } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Magnetic } from "@/components/ui/magnetic";
 import { heroHighlights } from "@/data/portfolio";
 
 const highlightIcons = [Flag, Globe, Zap];
 
-const wordRevealVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const wordChild = {
-  hidden: {
-    y: "100%",
-    opacity: 0,
-  },
-  visible: {
-    y: "0%",
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
-  },
-};
+const roles = [
+  "Technical Project Manager",
+  "AI & Automation Specialist",
+  "Remote Team Leader",
+  "Agile Practitioner",
+];
 
 export function Hero() {
   const [scrollY, setScrollY] = useState(0);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   const { scrollYProgress } = useScroll();
   const titleY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
   const subtitleY = useTransform(scrollYProgress, [0, 0.3], [0, -30]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Typewriter effect
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && displayText === currentRole) {
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && displayText === "") {
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    } else if (isDeleting) {
+      timeout = setTimeout(() => {
+        setDisplayText(currentRole.slice(0, displayText.length - 1));
+      }, 30);
+    } else {
+      timeout = setTimeout(() => {
+        setDisplayText(currentRole.slice(0, displayText.length + 1));
+      }, 60);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, roleIndex]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -52,8 +62,30 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative px-10 pt-[120px] pb-20"
+      className="min-h-screen flex items-center justify-center relative px-6 md:px-10 pt-[120px] pb-20 overflow-hidden"
     >
+      {/* Gradient mesh background */}
+      <motion.div className="absolute inset-0 z-0" style={{ opacity: bgOpacity }}>
+        <div
+          className="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full animate-[float_8s_ease-in-out_infinite]"
+          style={{
+            background: "radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full animate-[float_10s_ease-in-out_infinite_2s]"
+          style={{
+            background: "radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute top-[50%] left-[60%] w-[300px] h-[300px] rounded-full animate-[float_12s_ease-in-out_infinite_4s]"
+          style={{
+            background: "radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%)",
+          }}
+        />
+      </motion.div>
+
       <div className="max-w-[900px] text-center relative z-[2]">
         {/* Availability badge */}
         <motion.div
@@ -61,46 +93,56 @@ export function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/8 border border-primary/15 text-[13px] text-primary mb-8 font-mono tracking-wide">
-            <span className="w-1.5 h-1.5 rounded-full bg-success animate-[pulse-ring_2s_infinite]" />
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass text-[13px] text-primary mb-8 font-mono tracking-wide">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-success" />
+            </span>
             Open to remote opportunities
           </div>
         </motion.div>
 
-        {/* Title with word-by-word reveal */}
+        {/* Title */}
         <motion.div style={{ y: titleY }}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.7 }}
           >
-            <h1 className="font-display text-[72px] max-md:text-4xl font-bold leading-[1.08] mb-6 tracking-[-1px]">
+            <h1 className="font-display text-[72px] max-md:text-[40px] font-bold leading-[1.08] mb-6 tracking-[-1px]">
               <span className="text-muted font-normal italic text-[0.6em] block mb-2">
                 Hi, I&apos;m
               </span>
               <motion.span
                 className="inline-flex flex-wrap justify-center gap-x-4 gradient-text-hero"
-                variants={wordRevealVariants}
-                initial="hidden"
-                animate="visible"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
-                {["Eisha", "Kamran"].map((word, i) => (
-                  <span key={i} className="overflow-hidden inline-block">
-                    <motion.span className="inline-block" variants={wordChild}>
-                      {word}
-                    </motion.span>
-                  </span>
-                ))}
+                Eisha Kamran
               </motion.span>
               <span className="text-primary">.</span>
             </h1>
           </motion.div>
         </motion.div>
 
+        {/* Typewriter role */}
         <motion.div style={{ y: subtitleY }}>
           <Section delay={0.2} variant="blur">
+            <div className="flex items-center justify-center gap-1 mb-6 font-mono text-lg max-md:text-base">
+              <span className="text-muted">{">"}</span>
+              <span className="text-primary-light font-medium">{displayText}</span>
+              <motion.span
+                className="inline-block w-[2px] h-[1.1em] bg-primary"
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
+              />
+            </div>
+          </Section>
+
+          <Section delay={0.25} variant="blur">
             <p className="text-xl max-md:text-base text-muted leading-[1.7] max-w-[620px] mx-auto mb-10 font-light">
-              Technical Project Manager building{" "}
+              Building{" "}
               <span className="text-light font-medium">
                 AI & automation systems
               </span>{" "}
@@ -123,32 +165,43 @@ export function Hero() {
             </Magnetic>
             <Magnetic strength={0.15}>
               <button
-                className="inline-flex items-center gap-2.5 px-9 py-[15px] bg-transparent text-light border-[1.5px] border-dark-border-light rounded-full text-[15px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:border-primary hover:text-primary hover:-translate-y-0.5"
-                onClick={() => scrollTo("experience")}
+                className="inline-flex items-center gap-2.5 px-9 py-[15px] glass text-light rounded-full text-[15px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:border-primary hover:text-primary hover:-translate-y-0.5"
+                onClick={() => scrollTo("projects")}
               >
                 View My Work
               </button>
+            </Magnetic>
+            <Magnetic strength={0.15}>
+              <a href="#" className="no-underline">
+                <button className="inline-flex items-center gap-2.5 px-7 py-[15px] bg-transparent text-muted rounded-full text-[14px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:text-primary hover:-translate-y-0.5 border border-transparent hover:border-dark-border-light">
+                  <Download size={15} />
+                  Resume
+                </button>
+              </a>
             </Magnetic>
           </div>
         </Section>
 
         <Section delay={0.5}>
-          <div className="flex justify-center gap-12 mt-16 flex-wrap">
+          <div className="flex justify-center gap-12 mt-16 flex-wrap max-md:gap-6">
             {heroHighlights.map((item, i) => {
               const Icon = highlightIcons[i];
               return (
-                <div
+                <motion.div
                   key={i}
-                  className="flex items-center gap-3.5 opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  className="flex items-center gap-3.5 opacity-60 hover:opacity-100 transition-all duration-300"
+                  whileHover={{ y: -2 }}
                 >
-                  <Icon className="text-primary" size={28} />
+                  <div className="w-10 h-10 rounded-xl glass flex items-center justify-center">
+                    <Icon className="text-primary" size={20} />
+                  </div>
                   <div className="text-left">
                     <div className="text-sm font-semibold text-light">
                       {item.label}
                     </div>
                     <div className="text-xs text-muted-dark">{item.sub}</div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

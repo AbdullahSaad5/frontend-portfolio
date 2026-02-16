@@ -3,52 +3,79 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { Target } from "lucide-react";
+import { Target, Briefcase, Code, Settings, Users, Brain, Globe } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { TiltCard } from "@/components/ui/tilt-card";
 import { skills, tools } from "@/data/portfolio";
 
-function SkillBar({ skill, index, hoveredSkill, setHoveredSkill }: {
-  skill: typeof skills[number];
+const skillIcons: Record<string, typeof Briefcase> = {
+  "Project Management": Briefcase,
+  "Agile / Scrum": Settings,
+  "Stakeholder Mgmt": Users,
+  "AI & Automation": Brain,
+  "Cross-timezone Ops": Globe,
+  "Technical Architecture": Code,
+};
+
+function SkillCard({
+  skill,
+  index,
+}: {
+  skill: (typeof skills)[number];
   index: number;
-  hoveredSkill: number | null;
-  setHoveredSkill: (i: number | null) => void;
 }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const Icon = skillIcons[skill.name] || Briefcase;
 
   return (
     <Section delay={index * 0.08}>
-      <div
-        ref={ref}
-        onMouseEnter={() => setHoveredSkill(index)}
-        onMouseLeave={() => setHoveredSkill(null)}
-        className="cursor-default transition-all duration-300"
-      >
-        <div className="flex justify-between mb-2">
-          <span
-            className="text-sm font-medium transition-colors duration-300"
-            style={{ color: hoveredSkill === index ? skill.color : "#8BA3B8" }}
-          >
-            {skill.name}
-          </span>
-          <span
-            className="font-mono text-[13px] transition-colors duration-300"
-            style={{ color: hoveredSkill === index ? skill.color : "#3A5568" }}
-          >
-            {skill.level}%
-          </span>
-        </div>
-        <div className="h-1.5 rounded-[3px] bg-dark-card overflow-hidden relative">
+      <TiltCard tiltAmount={6}>
+        <div
+          ref={ref}
+          className="bento-card p-6 h-full group cursor-default"
+        >
+          {/* Icon */}
           <div
-            className="h-full rounded-[3px] transition-[width] duration-[1.5s]"
+            className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
             style={{
-              width: inView ? `${skill.level}%` : "0%",
-              background: `linear-gradient(90deg, ${skill.color}88, ${skill.color})`,
-              boxShadow: hoveredSkill === index ? `0 0 20px ${skill.color}40` : "none",
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+              backgroundColor: skill.color + "15",
+              border: `1px solid ${skill.color}25`,
             }}
-          />
+          >
+            <Icon size={20} style={{ color: skill.color }} />
+          </div>
+
+          {/* Name & Level */}
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-sm font-semibold text-light group-hover:text-primary transition-colors duration-300">
+              {skill.name}
+            </span>
+            <span
+              className="font-mono text-[13px] font-medium transition-colors duration-300"
+              style={{ color: skill.color }}
+            >
+              {skill.level}%
+            </span>
+          </div>
+
+          {/* Progress bar */}
+          <div className="h-1.5 rounded-full bg-dark-card overflow-hidden">
+            <motion.div
+              className="h-full rounded-full"
+              initial={{ width: "0%" }}
+              animate={inView ? { width: `${skill.level}%` } : {}}
+              transition={{
+                duration: 1.5,
+                delay: index * 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              style={{
+                background: `linear-gradient(90deg, ${skill.color}88, ${skill.color})`,
+              }}
+            />
+          </div>
         </div>
-      </div>
+      </TiltCard>
     </Section>
   );
 }
@@ -56,8 +83,8 @@ function SkillBar({ skill, index, hoveredSkill, setHoveredSkill }: {
 function ToolTag({ tool, index }: { tool: string; index: number }) {
   return (
     <motion.span
-      initial={{ opacity: 0, y: 10, rotate: Math.random() * 4 - 2 }}
-      whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{
         duration: 0.5,
@@ -77,47 +104,32 @@ function ToolTag({ tool, index }: { tool: string; index: number }) {
 }
 
 export function Skills() {
-  const [hoveredSkill, setHoveredSkill] = useState<number | null>(null);
-
   return (
-    <section id="skills" className="py-[120px] px-10">
-      <div className="max-w-[1100px] mx-auto">
+    <section id="skills" className="py-[120px] px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto">
         <Section variant="blur">
           <div className="text-center mb-16">
             <div className="section-label font-mono text-xs tracking-[4px] uppercase text-primary mb-4 flex items-center gap-3 justify-center">
               Skills & Tools
             </div>
-            <h2 className="font-display text-[42px] font-bold">
+            <h2 className="font-display text-[42px] max-md:text-3xl font-bold">
               My <span className="text-primary italic">Arsenal</span>
             </h2>
           </div>
         </Section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          {/* Skill Bars */}
+        {/* Skills Bento Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+          {skills.map((skill, i) => (
+            <SkillCard key={i} skill={skill} index={i} />
+          ))}
+        </div>
+
+        {/* Tools Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div>
             <Section variant="fade-left">
-              <h3 className="text-lg font-semibold mb-8 text-light-muted">
-                Core Competencies
-              </h3>
-            </Section>
-            <div className="flex flex-col gap-6">
-              {skills.map((skill, i) => (
-                <SkillBar
-                  key={i}
-                  skill={skill}
-                  index={i}
-                  hoveredSkill={hoveredSkill}
-                  setHoveredSkill={setHoveredSkill}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Tools */}
-          <div>
-            <Section variant="fade-right">
-              <h3 className="text-lg font-semibold mb-8 text-light-muted">
+              <h3 className="text-lg font-semibold mb-6 text-light-muted">
                 Tools & Technologies
               </h3>
             </Section>
@@ -126,11 +138,15 @@ export function Skills() {
                 <ToolTag key={i} tool={tool} index={i} />
               ))}
             </div>
+          </div>
 
+          <div>
             <Section delay={0.35}>
-              <div className="mt-10 p-7 rounded-2xl bg-primary/4 border border-primary/10">
+              <div className="bento-card p-7">
                 <div className="flex items-center gap-2.5 mb-3">
-                  <Target className="text-primary" size={20} />
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                    <Target className="text-primary" size={18} />
+                  </div>
                   <span className="font-semibold text-[15px]">
                     What I&apos;m Looking For
                   </span>

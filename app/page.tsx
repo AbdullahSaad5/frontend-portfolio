@@ -4,7 +4,9 @@ import { Hero } from "@/components/hero";
 import { StatsMarquee } from "@/components/stats-marquee";
 import { About } from "@/components/about";
 import { Experience } from "@/components/experience";
+import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
+import { Testimonials } from "@/components/testimonials";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -23,7 +25,9 @@ export default function Home() {
         <StatsMarquee />
         <About />
         <Experience />
+        <Projects />
         <Skills />
+        <Testimonials />
         <Contact />
         <Footer />
       </div>

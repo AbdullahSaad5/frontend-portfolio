@@ -15,6 +15,7 @@
   --color-light-muted: #8BA3B8;
   --color-primary: #F97316;
   --color-primary-dark: #EA580C;
+  --color-primary-light: #FB923C;
   --color-success: #22C55E;
   --font-display: var(--font-playfair);
   --font-sans: var(--font-dm-sans);
@@ -58,7 +59,7 @@
   }
 }
 
-/* Animations */
+/* ==================== Animations ==================== */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-12px); }
@@ -76,9 +77,38 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+@keyframes gradient-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes text-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(var(--orbit-radius, 60px)) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(var(--orbit-radius, 60px)) rotate(-360deg); }
+}
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 @layer components {
-  /* Animated gradient text for hero name */
+  /* ==================== Gradient Text ==================== */
   .gradient-text-hero {
     background: linear-gradient(
       90deg,
@@ -96,7 +126,102 @@
     animation: gradient-shift 6s ease-in-out infinite;
   }
 
-  /* Nav link underline */
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--color-light) 0%,
+      var(--color-primary) 50%,
+      var(--color-light) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shimmer 4s linear infinite;
+  }
+
+  /* ==================== Glassmorphism ==================== */
+  .glass {
+    background: rgba(15, 25, 34, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(30, 58, 79, 0.3);
+  }
+
+  .glass-light {
+    background: rgba(15, 25, 34, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(30, 58, 79, 0.15);
+  }
+
+  .glass-hover:hover {
+    background: rgba(15, 25, 34, 0.75);
+    border-color: rgba(249, 115, 22, 0.2);
+  }
+
+  /* ==================== Animated Borders ==================== */
+  .animated-border {
+    position: relative;
+    overflow: hidden;
+  }
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-primary) 25%,
+      transparent 50%,
+      var(--color-primary) 75%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: border-flow 4s linear infinite;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .animated-border:hover::before {
+    opacity: 0.6;
+  }
+  .animated-border::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--color-dark-card);
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  /* ==================== Bento Grid ==================== */
+  .bento-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(15, 25, 34, 0.8), rgba(10, 18, 25, 0.9));
+    border: 1px solid var(--color-dark-border);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .bento-card:hover {
+    border-color: rgba(249, 115, 22, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(249, 115, 22, 0.08);
+  }
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(249,115,22,0.03), transparent);
+    animation: shimmer 5s infinite;
+  }
+
+  /* ==================== Nav ==================== */
   .nav-link {
     position: relative;
     cursor: pointer;
@@ -125,7 +250,7 @@
     color: var(--color-primary);
   }
 
-  /* Stat card shimmer */
+  /* ==================== Stat Card ==================== */
   .stat-card {
     position: relative;
     overflow: hidden;
@@ -141,7 +266,7 @@
     animation: shimmer 4s infinite;
   }
 
-  /* Testimonial quote */
+  /* ==================== Testimonials ==================== */
   .testimonial-card::before {
     content: '"';
     position: absolute;
@@ -153,7 +278,7 @@
     line-height: 1;
   }
 
-  /* Timeline dot pulse */
+  /* ==================== Timeline ==================== */
   .timeline-dot::after {
     content: '';
     position: absolute;
@@ -163,7 +288,24 @@
     animation: pulse-ring 2s infinite;
   }
 
-  /* CTA button ripple */
+  .timeline-line {
+    position: relative;
+  }
+  .timeline-line::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 20px;
+    bottom: -40px;
+    width: 1.5px;
+    background: linear-gradient(
+      180deg,
+      var(--color-primary) 0%,
+      rgba(249, 115, 22, 0.1) 100%
+    );
+  }
+
+  /* ==================== CTA Button ==================== */
   .cta-btn {
     position: relative;
     overflow: hidden;
@@ -185,7 +327,7 @@
     height: 300px;
   }
 
-  /* Section label dash */
+  /* ==================== Section Label ==================== */
   .section-label::before {
     content: '';
     width: 30px;
@@ -193,7 +335,7 @@
     background: var(--color-primary);
   }
 
-  /* Contact section animated grid */
+  /* ==================== Contact Grid ==================== */
   .contact-grid-bg {
     background-image:
       linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px),
@@ -201,5 +343,38 @@
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at 50% 80%, black 20%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse at 50% 80%, black 20%, transparent 70%);
+  }
+
+  /* ==================== Glow Effects ==================== */
+  .glow-sm {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.1);
+  }
+  .glow-md {
+    box-shadow: 0 0 40px rgba(249, 115, 22, 0.15);
+  }
+  .glow-lg {
+    box-shadow: 0 0 60px rgba(249, 115, 22, 0.2);
+  }
+
+  /* ==================== Gradient Border ==================== */
+  .gradient-border {
+    position: relative;
+    background: var(--color-dark-card);
+    border-radius: 20px;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(249, 115, 22, 0.3),
+      transparent 40%,
+      transparent 60%,
+      rgba(249, 115, 22, 0.15)
+    );
   }
 }

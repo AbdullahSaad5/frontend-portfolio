@@ -22,9 +22,34 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Eisha Kamran — Technical Project Manager",
+  title: "Eisha Kamran — Technical Project Manager | AI & Automation | Remote",
   description:
-    "Technical Project Manager building AI & automation systems for US clients. Bridging timezones, shipping products remotely from Pakistan.",
+    "Technical Project Manager with a CS degree, building AI & automation systems for US clients. 1.5+ years of cross-timezone, fully remote delivery from Pakistan. Open to TPM and engineering roles.",
+  keywords: [
+    "Technical Project Manager",
+    "TPM",
+    "Remote",
+    "AI Automation",
+    "Agentic AI",
+    "Pakistan",
+    "Software Engineer",
+    "Agile",
+    "Scrum",
+    "SaaS",
+  ],
+  openGraph: {
+    title: "Eisha Kamran — Technical Project Manager",
+    description:
+      "Building AI & automation systems for US clients. Bridging timezones, shipping products remotely from Pakistan.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eisha Kamran — Technical Project Manager",
+    description:
+      "Building AI & automation systems for US clients. Bridging timezones, shipping products remotely from Pakistan.",
+  },
 };
 
 export default function RootLayout({
