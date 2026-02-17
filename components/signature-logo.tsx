@@ -41,16 +41,16 @@ export function SignatureLogo({
 
   return (
     <svg
-      viewBox="0 0 300 100"
+      viewBox="0 0 200 90"
       width={size}
-      height={size * (100 / 300)}
+      height={size * (90 / 200)}
       className={className}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* "E" - elegant cursive */}
+      {/* "E" - elegant cursive e */}
       <motion.path
-        d="M15 75 C15 75, 45 78, 55 65 C65 52, 50 35, 30 38 C10 41, 8 58, 15 68 C22 78, 40 82, 55 75"
+        d="M8 52 C18 52, 42 48, 42 38 C42 28, 28 24, 18 30 C8 36, 6 52, 14 62 C22 72, 38 72, 48 64"
         stroke={color}
         strokeWidth="2.5"
         strokeLinecap="round"
@@ -61,18 +61,17 @@ export function SignatureLogo({
       />
       {/* "i" */}
       <motion.path
-        d="M62 50 C62 50, 60 70, 62 75"
+        d="M56 44 C55 54, 54 62, 55 68"
         stroke={color}
         strokeWidth="2.5"
         strokeLinecap="round"
         variants={animate ? pathVariants : undefined}
         initial={animate ? "hidden" : undefined}
         animate={animate ? "visible" : undefined}
-        style={{ transition: "none" }}
       />
       <motion.circle
-        cx="63"
-        cy="42"
+        cx="57"
+        cy="36"
         r="2"
         fill={color}
         variants={animate ? dotVariants : undefined}
@@ -81,7 +80,7 @@ export function SignatureLogo({
       />
       {/* "s" */}
       <motion.path
-        d="M72 52 C80 48, 82 55, 74 58 C66 61, 70 70, 80 67"
+        d="M66 47 C74 43, 78 48, 72 53 C66 58, 68 65, 78 62"
         stroke={color}
         strokeWidth="2.5"
         strokeLinecap="round"
@@ -92,7 +91,7 @@ export function SignatureLogo({
       />
       {/* "h" */}
       <motion.path
-        d="M85 35 L85 75 M85 55 C85 50, 100 48, 100 58 L100 75"
+        d="M84 28 L84 68 M84 50 C88 44, 98 42, 98 52 L98 68"
         stroke={color}
         strokeWidth="2.5"
         strokeLinecap="round"
@@ -103,7 +102,7 @@ export function SignatureLogo({
       />
       {/* "a" */}
       <motion.path
-        d="M115 55 C105 52, 105 65, 112 68 C119 71, 118 55, 118 55 L118 75"
+        d="M112 50 C106 46, 104 54, 108 60 C112 66, 116 54, 116 48 L116 68"
         stroke={color}
         strokeWidth="2.5"
         strokeLinecap="round"
@@ -113,23 +112,23 @@ export function SignatureLogo({
         animate={animate ? "visible" : undefined}
       />
 
-      {/* Connecting flourish */}
+      {/* Connecting flourish to K */}
       <motion.path
-        d="M120 75 C128 70, 135 72, 140 68"
+        d="M118 68 C126 62, 132 60, 136 58"
         stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"
-        opacity="0.6"
+        opacity="0.5"
         variants={animate ? pathVariants : undefined}
         initial={animate ? "hidden" : undefined}
         animate={animate ? "visible" : undefined}
       />
 
-      {/* "K" */}
+      {/* "K" - elegant capital */}
       <motion.path
-        d="M148 30 L148 80 M170 35 L148 58 L172 80"
+        d="M140 22 L140 74 M162 26 L140 52 L164 74"
         stroke={color}
-        strokeWidth="2.5"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
         variants={animate ? pathVariants : undefined}
@@ -139,21 +138,21 @@ export function SignatureLogo({
 
       {/* Underline flourish */}
       <motion.path
-        d="M12 85 C60 90, 120 88, 175 82 C190 80, 200 84, 180 87"
+        d="M6 80 C50 84, 100 82, 168 76 C178 75, 186 78, 175 80"
         stroke={color}
         strokeWidth="1.8"
         strokeLinecap="round"
-        opacity="0.5"
+        opacity="0.4"
         variants={animate ? pathVariants : undefined}
         initial={animate ? "hidden" : undefined}
         animate={animate ? "visible" : undefined}
       />
 
-      {/* Decorative dot */}
+      {/* Decorative dot after K */}
       <motion.circle
-        cx="185"
-        cy="75"
-        r="3"
+        cx="172"
+        cy="72"
+        r="2.5"
         fill={color}
         variants={animate ? dotVariants : undefined}
         initial={animate ? "hidden" : undefined}
@@ -190,9 +189,9 @@ export function SignatureLogoMark({
       </defs>
       <rect x="2" y="2" width="46" height="46" rx="14" fill="url(#logoGrad)" opacity="0.1" />
       <rect x="2" y="2" width="46" height="46" rx="14" stroke="url(#logoGrad)" strokeWidth="1.5" opacity="0.3" />
-      {/* Stylized "E" */}
+      {/* Stylized cursive "E" */}
       <path
-        d="M15 35 C15 35, 27 37, 32 30 C37 23, 30 16, 22 18 C14 20, 12 28, 15 33 C18 38, 28 40, 35 35"
+        d="M12 27 C18 27, 32 25, 32 20 C32 14, 24 12, 18 16 C12 20, 11 28, 16 34 C21 40, 32 38, 37 32"
         stroke={color}
         strokeWidth="2.2"
         strokeLinecap="round"
@@ -200,7 +199,7 @@ export function SignatureLogoMark({
         fill="none"
       />
       {/* Dot accent */}
-      <circle cx="37" cy="33" r="2" fill={color} />
+      <circle cx="39" cy="31" r="2" fill={color} />
     </svg>
   );
 }
