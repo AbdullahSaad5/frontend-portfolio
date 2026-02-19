@@ -21,7 +21,7 @@ export function Footer() {
                 &copy; 2026 Eisha Kamran<span className="text-primary">.</span>
               </div>
               <div className="font-mono text-[11px] text-muted-darkest/60 flex items-center gap-1 mt-0.5">
-                Designed with <Heart size={10} className="text-primary" fill="currentColor" /> in Pakistan
+                Designed with <Heart size={10} className="text-primary mx-0.5" fill="currentColor" /> in Pakistan
               </div>
             </div>
           </div>
