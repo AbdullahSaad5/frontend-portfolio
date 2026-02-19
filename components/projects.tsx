@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/section";
-import { TiltCard } from "@/components/ui/tilt-card";
 import { projects } from "@/data/portfolio";
 import { ArrowUpRight, TrendingUp } from "lucide-react";
 
@@ -28,11 +27,8 @@ export function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, idx) => (
             <Section key={idx} delay={idx * 0.1} variant="scale">
-              <TiltCard tiltAmount={5}>
-                <motion.div
-                  className="bento-card p-8 md:p-10 h-full flex flex-col group cursor-default"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                <div
+                  className="bento-card p-8 md:p-10 h-full flex flex-col group cursor-default transition-transform duration-300 hover:-translate-y-1"
                 >
                   {/* Gradient accent */}
                   <div
@@ -103,8 +99,7 @@ export function Projects() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
-              </TiltCard>
+                </div>
             </Section>
           ))}
         </div>
