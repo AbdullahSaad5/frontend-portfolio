@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { Target, Briefcase, Code, Settings, Users, Brain, Globe } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import { TiltCard } from "@/components/ui/tilt-card";
 import { skills, tools } from "@/data/portfolio";
 
 const skillIcons: Record<string, typeof Briefcase> = {
@@ -29,53 +27,51 @@ function SkillCard({
 
   return (
     <Section delay={index * 0.08}>
-      <TiltCard tiltAmount={6}>
+      <div
+        ref={ref}
+        className="bento-card p-6 h-full group cursor-default"
+      >
+        {/* Icon */}
         <div
-          ref={ref}
-          className="bento-card p-6 h-full group cursor-default"
+          className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
+          style={{
+            backgroundColor: skill.color + "15",
+            border: `1px solid ${skill.color}25`,
+          }}
         >
-          {/* Icon */}
-          <div
-            className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
-            style={{
-              backgroundColor: skill.color + "15",
-              border: `1px solid ${skill.color}25`,
-            }}
-          >
-            <Icon size={20} style={{ color: skill.color }} />
-          </div>
-
-          {/* Name & Level */}
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-sm font-semibold text-light group-hover:text-primary transition-colors duration-300">
-              {skill.name}
-            </span>
-            <span
-              className="font-mono text-[13px] font-medium transition-colors duration-300"
-              style={{ color: skill.color }}
-            >
-              {skill.level}%
-            </span>
-          </div>
-
-          {/* Progress bar */}
-          <div className="h-1.5 rounded-full bg-dark-card overflow-hidden">
-            <motion.div
-              className="h-full rounded-full"
-              initial={{ width: "0%" }}
-              animate={inView ? { width: `${skill.level}%` } : {}}
-              transition={{
-                duration: 1.5,
-                delay: index * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              style={{
-                background: `linear-gradient(90deg, ${skill.color}88, ${skill.color})`,
-              }}
-            />
-          </div>
+          <Icon size={20} style={{ color: skill.color }} />
         </div>
-      </TiltCard>
+
+        {/* Name & Level */}
+        <div className="flex justify-between items-center mb-3">
+          <span className="text-sm font-semibold text-light group-hover:text-primary transition-colors duration-300">
+            {skill.name}
+          </span>
+          <span
+            className="font-mono text-[13px] font-medium transition-colors duration-300"
+            style={{ color: skill.color }}
+          >
+            {skill.level}%
+          </span>
+        </div>
+
+        {/* Progress bar */}
+        <div className="h-1.5 rounded-full bg-dark-card overflow-hidden">
+          <motion.div
+            className="h-full rounded-full"
+            initial={{ width: "0%" }}
+            animate={inView ? { width: `${skill.level}%` } : {}}
+            transition={{
+              duration: 1.5,
+              delay: index * 0.1,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            style={{
+              background: `linear-gradient(90deg, ${skill.color}88, ${skill.color})`,
+            }}
+          />
+        </div>
+      </div>
     </Section>
   );
 }

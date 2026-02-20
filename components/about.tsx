@@ -3,7 +3,6 @@
 import { Calendar, Rocket, Building2, Globe, GraduationCap } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
-import { TiltCard } from "@/components/ui/tilt-card";
 import { stats, education } from "@/data/portfolio";
 
 const statIcons = [Calendar, Rocket, Building2, Globe];
@@ -91,21 +90,19 @@ export function About() {
               {stats.map((stat, i) => {
                 const Icon = statIcons[i];
                 return (
-                  <TiltCard key={i}>
-                    <div className="stat-card h-full text-center p-7 md:p-8 rounded-2xl glass transition-all duration-[400ms] hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,115,22,0.08)]">
-                      <div className="mb-3 flex justify-center">
-                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                          <Icon className="text-primary" size={20} />
-                        </div>
-                      </div>
-                      <div className="font-display text-[32px] font-bold text-light mb-1">
-                        <AnimatedCounter target={stat.target} suffix={stat.suffix} />
-                      </div>
-                      <div className="text-xs text-muted-dark uppercase tracking-[1.5px] font-mono">
-                        {stat.label}
+                  <div className="stat-card h-full text-center p-7 md:p-8 rounded-2xl glass transition-all duration-[400ms] hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,115,22,0.08)]">
+                    <div className="mb-3 flex justify-center">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Icon className="text-primary" size={20} />
                       </div>
                     </div>
-                  </TiltCard>
+                    <div className="font-display text-[32px] font-bold text-light mb-1">
+                      <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                    </div>
+                    <div className="text-xs text-muted-dark uppercase tracking-[1.5px] font-mono">
+                      {stat.label}
+                    </div>
+                  </div>
                 );
               })}
             </div>
