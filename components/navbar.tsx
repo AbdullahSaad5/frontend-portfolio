@@ -52,7 +52,7 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 transition-all duration-[400ms] ${
+        className={`backdrop-blur-xs fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 transition-all duration-[400ms] ${
           scrolled
             ? "glass shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
             : "border-b border-transparent"
