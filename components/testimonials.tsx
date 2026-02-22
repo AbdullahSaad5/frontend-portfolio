@@ -69,7 +69,7 @@ export function Testimonials() {
           </div>
         </Section>
 
-        <div className="relative min-h-[320px] max-md:min-h-[400px]">
+        <div className="relative">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={active}
@@ -82,7 +82,7 @@ export function Testimonials() {
                 duration: 0.5,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="absolute inset-0"
+              className="relative w-full"
             >
               <div className="bento-card p-10 md:p-14 text-center relative overflow-hidden">
                 {/* Quote icon */}
