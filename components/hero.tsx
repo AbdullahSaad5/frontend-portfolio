@@ -172,7 +172,7 @@ export function Hero() {
               </button>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <a href="#" className="no-underline">
+              <a href="/Eisha Kamran Resume Feb 2025.pdf" download className="no-underline">
                 <button className="inline-flex items-center gap-2.5 px-7 py-[15px] bg-transparent text-muted rounded-full text-[14px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:text-primary hover:-translate-y-0.5 border border-transparent hover:border-dark-border-light">
                   <Download size={15} />
                   Resume

@@ -144,7 +144,7 @@ export const marqueeItems = [
 ];
 
 export const socialLinks = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/eisha-kamran", icon: "linkedin" },
-  { label: "GitHub", href: "#", icon: "github" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/eisha313", icon: "linkedin" },
+  { label: "GitHub", href: "https://github.com/Eisha313", icon: "github" },
   { label: "Email", href: "mailto:eisha@axiomsolinc.com", icon: "mail" },
 ];

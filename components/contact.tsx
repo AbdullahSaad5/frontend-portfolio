@@ -124,7 +124,7 @@ export function Contact() {
           <div className="flex gap-3 justify-center flex-wrap mb-12">
             <Magnetic strength={0.15}>
               <a
-                href="https://www.linkedin.com/in/eisha-kamran"
+                href="https://www.linkedin.com/in/eisha313"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="no-underline"
@@ -138,7 +138,7 @@ export function Contact() {
               </a>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <a href="#" className="no-underline">
+              <a href="https://github.com/Eisha313" target="_blank" rel="noopener noreferrer" className="no-underline">
                 <motion.div
                   className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-muted-dark hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -3, scale: 1.1 }}
@@ -158,7 +158,7 @@ export function Contact() {
               </a>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <a href="#" className="no-underline">
+              <a href="/Eisha Kamran Resume Feb 2025.pdf" download className="no-underline">
                 <motion.div
                   className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-muted-dark hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -3, scale: 1.1 }}

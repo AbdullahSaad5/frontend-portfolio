@@ -29,8 +29,8 @@ export function Footer() {
           {/* Social links */}
           <div className="flex gap-3 items-center">
             {[
-              { icon: Linkedin, href: "https://www.linkedin.com/in/eisha-kamran", label: "LinkedIn" },
-              { icon: Github, href: "#", label: "GitHub" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/eisha313", label: "LinkedIn" },
+              { icon: Github, href: "https://github.com/Eisha313", label: "GitHub" },
               { icon: Mail, href: "mailto:eisha@axiomsolinc.com", label: "Email" },
             ].map((link) => (
               <motion.a
