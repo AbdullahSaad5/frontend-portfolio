@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer className="px-6 md:px-10 py-10 border-t border-dark-card relative">
       <div className="max-w-[1200px] mx-auto">
-        <div className="flex justify-between items-center flex-wrap gap-6">
+        <div className="flex flex-col items-center gap-5 md:flex-row md:justify-between">
           {/* Logo & copyright */}
           <div className="flex items-center gap-4">
             <SignatureLogoMark size={32} />
