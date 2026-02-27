@@ -15,7 +15,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-5 md:flex-row md:justify-between">
           {/* Logo & copyright */}
           <div className="flex items-center gap-4">
-            <SignatureLogoMark size={32} />
+            <SignatureLogoMark size={70} className="text-primary" />
             <div>
               <div className="font-mono text-[13px] text-muted-darkest">
                 &copy; 2026 Eisha Kamran<span className="text-primary">.</span>

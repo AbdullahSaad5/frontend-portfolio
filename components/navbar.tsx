@@ -62,10 +62,7 @@ export function Navbar() {
           className="flex items-center gap-2.5 cursor-pointer group"
           onClick={() => scrollTo("home")}
         >
-          <SignatureLogoMark size={36} />
-          <span className="text-[15px] font-semibold tracking-wide group-hover:text-primary transition-colors duration-300">
-            Eisha<span className="text-primary">.</span>
-          </span>
+          <SignatureLogoMark size={80} className="text-primary group-hover:brightness-110 transition-all duration-300" />
         </div>
 
         {/* Desktop nav */}

@@ -41,7 +41,7 @@ export function PageLoader() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center gap-6"
           >
-            <SignatureLogo size={180} animate={true} />
+            <SignatureLogo size={180} animate={true} className="text-primary" />
 
             {/* Progress bar */}
             <div className="w-[120px] h-[2px] bg-dark-card rounded-full overflow-hidden">
