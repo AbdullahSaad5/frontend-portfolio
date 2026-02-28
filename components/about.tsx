@@ -90,7 +90,10 @@ export function About() {
               {stats.map((stat, i) => {
                 const Icon = statIcons[i];
                 return (
-                  <div className="stat-card h-full text-center p-7 md:p-8 rounded-2xl glass transition-all duration-[400ms] hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,115,22,0.08)]">
+                  <div
+                    key={i}
+                    className="stat-card h-full text-center p-7 md:p-8 rounded-2xl glass transition-all duration-[400ms] hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,115,22,0.08)]"
+                  >
                     <div className="mb-3 flex justify-center">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                         <Icon className="text-primary" size={20} />
