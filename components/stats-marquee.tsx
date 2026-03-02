@@ -2,9 +2,11 @@
 
 import Marquee from "react-fast-marquee";
 import { Star } from "lucide-react";
-import { marqueeItems } from "@/data/portfolio";
+import { useModeData } from "@/hooks/use-mode-data";
 
 export function StatsMarquee() {
+  const { marqueeItems } = useModeData();
+
   return (
     <div className="py-10 border-t border-b border-dark-card">
       <Marquee speed={40} gradient={false} autoFill>

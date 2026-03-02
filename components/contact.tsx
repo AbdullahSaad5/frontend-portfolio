@@ -6,6 +6,7 @@ import { Mail, Linkedin, MapPin, Clock, CheckCircle, Download, Github, ArrowRigh
 import { Section } from "@/components/ui/section";
 import { Magnetic } from "@/components/ui/magnetic";
 import { contactInfo } from "@/data/portfolio";
+import { useModeData } from "@/hooks/use-mode-data";
 
 const contactIcons = [MapPin, Clock, CheckCircle];
 
@@ -59,6 +60,8 @@ function LiveClock() {
 }
 
 export function Contact() {
+  const { contactIntro } = useModeData();
+
   return (
     <section id="contact" className="py-[120px] px-6 md:px-10 relative overflow-hidden">
       {/* Background effects */}
@@ -91,9 +94,7 @@ export function Contact() {
 
         <Section delay={0.15} variant="blur">
           <p className="text-muted text-base leading-[1.8] mb-10 max-w-[520px] mx-auto">
-            Whether you&apos;re a startup founder looking for a TPM who
-            understands engineering, or a team lead seeking someone who can hit
-            the ground running remotely — I&apos;d love to chat.
+            {contactIntro}
           </p>
         </Section>
 
@@ -108,7 +109,7 @@ export function Contact() {
         <Section delay={0.25}>
           <div className="flex gap-4 justify-center flex-wrap mb-8">
             <Magnetic strength={0.2}>
-              <a href="mailto:eisha@axiomsolinc.com" className="no-underline">
+              <a href="mailto:eishakamran313@gmail.com" className="no-underline">
                 <button className="cta-btn inline-flex items-center gap-2.5 px-9 py-4 bg-gradient-to-br from-primary to-primary-dark text-white border-none rounded-full text-[15px] font-semibold cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(249,115,22,0.3)]">
                   <Mail size={18} />
                   Send Me an Email
@@ -148,7 +149,7 @@ export function Contact() {
               </a>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <a href="mailto:eisha@axiomsolinc.com" className="no-underline">
+              <a href="mailto:eishakamran313@gmail.com" className="no-underline">
                 <motion.div
                   className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-muted-dark hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -3, scale: 1.1 }}
@@ -158,7 +159,7 @@ export function Contact() {
               </a>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <a href="/Eisha Kamran Resume Feb 2025.pdf" download className="no-underline">
+              <a href="/EIsha CV.pdf" download className="no-underline">
                 <motion.div
                   className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-muted-dark hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -3, scale: 1.1 }}

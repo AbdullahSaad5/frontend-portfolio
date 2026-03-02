@@ -31,7 +31,7 @@ export function Footer() {
             {[
               { icon: Linkedin, href: "https://www.linkedin.com/in/eisha313", label: "LinkedIn" },
               { icon: Github, href: "https://github.com/Eisha313", label: "GitHub" },
-              { icon: Mail, href: "mailto:eisha@axiomsolinc.com", label: "Email" },
+              { icon: Mail, href: "mailto:eishakamran313@gmail.com", label: "Email" },
             ].map((link) => (
               <motion.a
                 key={link.label}

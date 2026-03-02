@@ -12,25 +12,28 @@ import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { PageLoader } from "@/components/page-loader";
+import { Providers } from "@/components/providers";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <div className="bg-dark text-light min-h-screen font-sans overflow-x-hidden relative">
-        <PageLoader />
-        <ScrollProgress />
-        <CursorEffects />
-        <Navbar />
-        <Hero />
-        <StatsMarquee />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Testimonials />
-        <Contact />
-        <Footer />
-      </div>
-    </SmoothScroll>
+    <Providers>
+      <SmoothScroll>
+        <div className="bg-dark text-light min-h-screen font-sans overflow-x-hidden relative">
+          <PageLoader />
+          <ScrollProgress />
+          <CursorEffects />
+          <Navbar />
+          <Hero />
+          <StatsMarquee />
+          <About />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Testimonials />
+          <Contact />
+          <Footer />
+        </div>
+      </SmoothScroll>
+    </Providers>
   );
 }

@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/section";
-import { projects } from "@/data/portfolio";
 import { ArrowUpRight, TrendingUp } from "lucide-react";
+import { useModeData } from "@/hooks/use-mode-data";
 
 export function Projects() {
+  const { projects, projectsSubtitle } = useModeData();
+
   return (
     <section id="projects" className="py-[120px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
@@ -18,8 +20,7 @@ export function Projects() {
               Projects & <span className="text-primary italic">Case Studies</span>
             </h2>
             <p className="text-muted text-base mt-4 max-w-[550px] mx-auto leading-[1.7]">
-              Delivering impactful solutions across healthcare, fintech, e-commerce,
-              and developer tools — all managed end-to-end, remotely.
+              {projectsSubtitle}
             </p>
           </div>
         </Section>

@@ -1,13 +1,16 @@
 "use client";
 
-import { Calendar, Rocket, Building2, Globe, GraduationCap } from "lucide-react";
+import { Calendar, Rocket, Award, Globe, GraduationCap } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
-import { stats, education } from "@/data/portfolio";
+import { education } from "@/data/portfolio";
+import { useModeData } from "@/hooks/use-mode-data";
 
-const statIcons = [Calendar, Rocket, Building2, Globe];
+const statIcons = [Calendar, Rocket, Award, Globe];
 
 export function About() {
+  const { stats, aboutHeading, aboutParagraphs } = useModeData();
+
   return (
     <section id="about" className="py-[120px] px-6 md:px-10 max-w-[1200px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 items-center">
@@ -17,31 +20,19 @@ export function About() {
               About Me
             </div>
             <h2 className="font-display text-[42px] max-md:text-3xl font-bold leading-[1.15] mb-6">
-              Building the future,
+              {aboutHeading[0]}
               <br />
-              <span className="text-primary italic">one sprint at a time</span>
+              <span className="text-primary italic">{aboutHeading[1]}</span>
             </h2>
           </Section>
 
-          <Section delay={0.15} variant="blur">
-            <p className="text-muted leading-[1.85] text-[15px] mb-5">
-              I&apos;m a Technical Project Manager with a Computer Science degree
-              from COMSATS University Islamabad. Currently at Axiom Sol Inc, a
-              US-based startup where I manage the delivery of AI automation and
-              Agentic AI systems for clients across healthcare, finance,
-              e-commerce, and more.
-            </p>
-          </Section>
-
-          <Section delay={0.25} variant="blur">
-            <p className="text-muted leading-[1.85] text-[15px] mb-8">
-              What makes me different? I don&apos;t just manage timelines — I
-              understand the architecture. With a CS background, I bridge the gap
-              between business stakeholders and engineering teams, speaking both
-              languages fluently. I&apos;ve been doing this fully remote, across
-              timezones, since day one.
-            </p>
-          </Section>
+          {aboutParagraphs.map((paragraph, i) => (
+            <Section key={i} delay={0.15 + i * 0.1} variant="blur">
+              <p className="text-muted leading-[1.85] text-[15px] mb-5">
+                {paragraph}
+              </p>
+            </Section>
+          ))}
 
           {/* Education card */}
           <Section delay={0.35}>
@@ -91,7 +82,7 @@ export function About() {
                 const Icon = statIcons[i];
                 return (
                   <div
-                    key={i}
+                    key={`${stat.label}-${i}`}
                     className="stat-card h-full text-center p-7 md:p-8 rounded-2xl glass transition-all duration-[400ms] hover:border-primary/30 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,115,22,0.08)]"
                   >
                     <div className="mb-3 flex justify-center">

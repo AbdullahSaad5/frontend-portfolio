@@ -5,18 +5,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Flag, Globe, Zap, ChevronDown, Download } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Magnetic } from "@/components/ui/magnetic";
-import { heroHighlights } from "@/data/portfolio";
+import { useModeData } from "@/hooks/use-mode-data";
 
 const highlightIcons = [Flag, Globe, Zap];
 
-const roles = [
-  "Technical Project Manager",
-  "AI & Automation Specialist",
-  "Remote Team Leader",
-  "Agile Practitioner",
-];
-
 export function Hero() {
+  const { heroRoles, heroSubtitle, heroHighlights } = useModeData();
   const [scrollY, setScrollY] = useState(0);
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
@@ -32,16 +26,23 @@ export function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Reset typewriter when roles change (mode switch)
+  useEffect(() => {
+    setRoleIndex(0);
+    setDisplayText("");
+    setIsDeleting(false);
+  }, [heroRoles]);
+
   // Typewriter effect
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const currentRole = heroRoles[roleIndex];
     let timeout: NodeJS.Timeout;
 
     if (!isDeleting && displayText === currentRole) {
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && displayText === "") {
       setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
+      setRoleIndex((prev) => (prev + 1) % heroRoles.length);
     } else if (isDeleting) {
       timeout = setTimeout(() => {
         setDisplayText(currentRole.slice(0, displayText.length - 1));
@@ -53,7 +54,7 @@ export function Hero() {
     }
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex]);
+  }, [displayText, isDeleting, roleIndex, heroRoles]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -141,14 +142,10 @@ export function Hero() {
           </Section>
 
           <Section delay={0.25} variant="blur">
-            <p className="text-xl max-md:text-base text-muted leading-[1.7] max-w-[620px] mx-auto mb-10 font-light">
-              Building{" "}
-              <span className="text-light font-medium">
-                AI & automation systems
-              </span>{" "}
-              for US clients. Bridging timezones, shipping products, and turning
-              complex problems into elegant solutions — all remotely from Pakistan.
-            </p>
+            <p
+              className="text-xl max-md:text-base text-muted leading-[1.7] max-w-[620px] mx-auto mb-10 font-light [&_strong]:text-light [&_strong]:font-medium"
+              dangerouslySetInnerHTML={{ __html: heroSubtitle }}
+            />
           </Section>
         </motion.div>
 
@@ -172,7 +169,7 @@ export function Hero() {
               </button>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <a href="/Eisha Kamran Resume Feb 2025.pdf" download className="no-underline">
+              <a href="/EIsha CV.pdf" download className="no-underline">
                 <button className="inline-flex items-center gap-2.5 px-7 py-[15px] bg-transparent text-muted rounded-full text-[14px] font-medium cursor-pointer tracking-[0.5px] transition-all duration-[400ms] hover:text-primary hover:-translate-y-0.5 border border-transparent hover:border-dark-border-light">
                   <Download size={15} />
                   Resume

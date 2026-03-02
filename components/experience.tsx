@@ -2,9 +2,11 @@
 
 import { Star } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import { experiences } from "@/data/portfolio";
+import { useModeData } from "@/hooks/use-mode-data";
 
 export function Experience() {
+  const { experiences } = useModeData();
+
   return (
     <section
       id="experience"

@@ -1,80 +1,61 @@
-export const skills = [
-  { name: "Project Management", level: 92, color: "#F97316", icon: "📋" },
-  { name: "Agile / Scrum", level: 90, color: "#EF4444", icon: "🔄" },
-  { name: "Stakeholder Mgmt", level: 88, color: "#EC4899", icon: "🤝" },
-  { name: "AI & Automation", level: 85, color: "#8B5CF6", icon: "🤖" },
-  { name: "Cross-timezone Ops", level: 95, color: "#06B6D4", icon: "🌍" },
-  { name: "Technical Architecture", level: 78, color: "#10B981", icon: "🏗️" },
-];
+import type { PortfolioMode } from "@/context/portfolio-mode";
 
-export const tools = [
-  "Jira", "Confluence", "Notion", "Slack", "GitHub",
-  "Figma", "Trello", "Linear", "Loom", "VS Code",
-  "Python", "JavaScript", "Docker", "AWS", "Vercel",
-];
+// ── Types ──────────────────────────────────────────────────────────────
 
-export const experiences = [
-  {
-    role: "Technical Project Manager",
-    company: "Axiom Sol Inc",
-    location: "US-based · Remote",
-    period: "2024 — Present",
-    tags: ["AI Automation", "Agentic AI", "Cloud", "SaaS"],
-    highlights: [
-      "End-to-end delivery of AI automation & Agentic AI systems for US clients across healthcare, finance, and e-commerce verticals",
-      "Sprint planning, backlog grooming, and cross-timezone standups bridging Pakistan and US teams daily",
-      "Recognized by name in client testimonials for exceptional communication and delivery quality",
-      "Coordinated engineering, design, and QA teams to ship custom software solutions on time and within scope",
-    ],
-  },
-];
+export interface Skill {
+  name: string;
+  level: number;
+  color: string;
+  icon: string;
+}
 
-export const projects = [
-  {
-    title: "AI-Powered Healthcare Platform",
-    description: "Led end-to-end delivery of an intelligent healthcare management system with automated patient triage, appointment scheduling, and predictive analytics for a US-based healthtech startup.",
-    tags: ["Healthcare", "AI/ML", "SaaS", "Agile"],
-    metrics: [
-      { value: "40%", label: "Faster Patient Processing" },
-      { value: "3", label: "Sprints Ahead of Schedule" },
-    ],
-    gradient: "from-blue-500/20 to-cyan-500/20",
-    accentColor: "#06B6D4",
-  },
-  {
-    title: "E-Commerce Automation Suite",
-    description: "Managed a team of 8 engineers to build an agentic AI system that automates inventory management, customer support, and order fulfillment for a multi-million dollar e-commerce client.",
-    tags: ["E-Commerce", "Agentic AI", "Automation", "Cloud"],
-    metrics: [
-      { value: "60%", label: "Reduction in Manual Tasks" },
-      { value: "$2M+", label: "Revenue Impacted" },
-    ],
-    gradient: "from-violet-500/20 to-purple-500/20",
-    accentColor: "#8B5CF6",
-  },
-  {
-    title: "FinTech Compliance Dashboard",
-    description: "Delivered a real-time compliance monitoring dashboard for a financial services company, integrating AI-driven anomaly detection with regulatory reporting automation.",
-    tags: ["Finance", "Compliance", "Real-time", "Dashboard"],
-    metrics: [
-      { value: "99.9%", label: "Uptime Achieved" },
-      { value: "5x", label: "Faster Compliance Reports" },
-    ],
-    gradient: "from-emerald-500/20 to-green-500/20",
-    accentColor: "#10B981",
-  },
-  {
-    title: "SaaS Developer Tools Platform",
-    description: "Orchestrated the build of an internal developer productivity platform featuring CI/CD pipelines, code review automation, and real-time collaboration tools for distributed teams.",
-    tags: ["DevTools", "SaaS", "CI/CD", "Collaboration"],
-    metrics: [
-      { value: "30%", label: "Developer Productivity Boost" },
-      { value: "12", label: "Teams Onboarded" },
-    ],
-    gradient: "from-orange-500/20 to-amber-500/20",
-    accentColor: "#F97316",
-  },
-];
+export interface Experience {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  tags: string[];
+  highlights: string[];
+}
+
+export interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  metrics: { value: string; label: string }[];
+  gradient: string;
+  accentColor: string;
+}
+
+export interface Stat {
+  target: number;
+  suffix: string;
+  label: string;
+}
+
+export interface HeroHighlight {
+  label: string;
+  sub: string;
+}
+
+export interface PortfolioData {
+  skills: Skill[];
+  tools: string[];
+  experiences: Experience[];
+  projects: Project[];
+  heroRoles: string[];
+  heroSubtitle: string;
+  heroHighlights: HeroHighlight[];
+  aboutHeading: [string, string]; // [line1, line2(italic)]
+  aboutParagraphs: string[];
+  stats: Stat[];
+  marqueeItems: string[];
+  lookingForText: string;
+  contactIntro: string;
+  projectsSubtitle: string;
+}
+
+// ── Shared (mode-independent) ──────────────────────────────────────────
 
 export const testimonials = [
   {
@@ -100,14 +81,22 @@ export const testimonials = [
 export const education = {
   degree: "BS Computer Science",
   university: "COMSATS University Islamabad",
-  year: "2025",
+  year: "Feb 2021 — Jan 2025",
   highlights: [
-    "Data Structures & Algorithms",
+    "Machine Learning",
+    "Computer Vision",
+    "Data Mining & AI",
     "Software Engineering",
-    "AI & Machine Learning",
+    "Data Structures & Algorithms",
     "Database Systems",
   ],
 };
+
+export const certifications = [
+  { name: "Agentic AI and AI Agents", platform: "Coursera", year: "2025" },
+  { name: "Google Project Management Professional Certificate", platform: "Coursera", year: "2025" },
+  { name: "Web Development Course", platform: "Coursera", year: "2025" },
+];
 
 export const navItems = [
   { id: "home", label: "Home" },
@@ -118,33 +107,267 @@ export const navItems = [
   { id: "contact", label: "Contact" },
 ];
 
-export const heroHighlights = [
-  { label: "US Startup", sub: "Experience" },
-  { label: "Fully Remote", sub: "Since Day 1" },
-  { label: "AI & Automation", sub: "Specialist" },
-];
-
-export const stats = [
-  { target: 1, suffix: ".5+", label: "Years Experience" },
-  { target: 15, suffix: "+", label: "Projects Delivered" },
-  { target: 6, suffix: "+", label: "Industry Verticals" },
-  { target: 100, suffix: "%", label: "Remote Track Record" },
-];
-
 export const contactInfo = [
-  { label: "Location", value: "Rawalpindi, Pakistan" },
+  { label: "Location", value: "Islamabad, Pakistan" },
   { label: "Timezone", value: "PKT (GMT+5)" },
   { label: "Availability", value: "Flexible / US hours" },
-];
-
-export const marqueeItems = [
-  "Technical Project Management", "AI Automation", "Agile / Scrum",
-  "Remote Team Leadership", "Cross-Timezone Delivery", "Stakeholder Management",
-  "Sprint Planning", "Cloud Architecture", "Agentic AI", "SaaS Development",
 ];
 
 export const socialLinks = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/eisha313", icon: "linkedin" },
   { label: "GitHub", href: "https://github.com/Eisha313", icon: "github" },
-  { label: "Email", href: "mailto:eisha@axiomsolinc.com", icon: "mail" },
+  { label: "Email", href: "mailto:eishakamran313@gmail.com", icon: "mail" },
 ];
+
+// ── All Experiences ────────────────────────────────────────────────────
+
+const axiomExperience: Experience = {
+  role: "Technical Project Manager",
+  company: "Axiom Consulting",
+  location: "California, US · Remote",
+  period: "Oct 2024 — Present",
+  tags: ["AI Automation", "Agentic AI", "Agile", "Jira"],
+  highlights: [
+    "Lead technical project planning, execution, and delivery ensuring alignment with client requirements and technical specifications",
+    "Coordinate cross-functional teams using Agile methodologies in Jira and create comprehensive technical documentation and project roadmaps",
+    "Facilitate communication between stakeholders, clients, and development teams to ensure project success",
+    "Manage project timelines, resources, and budgets, while proactively addressing risks and obstacles",
+  ],
+};
+
+const quantumEdgeExperience: Experience = {
+  role: "Frontend & AI Engineer",
+  company: "Quantum Edge",
+  location: "Islamabad",
+  period: "Apr 2023 — Aug 2024",
+  tags: ["React.js", "Next.js", "AI/ML", "RESTful APIs"],
+  highlights: [
+    "Developed responsive web applications using React.js, Next.js with AI-powered features and integrated ML models/AI APIs",
+    "Built real-time data visualization dashboards for AI predictions and RESTful API integrations connecting frontend with backend ML services",
+    "Collaborated with data science teams to deploy AI models and create user-friendly interfaces for AI-driven applications",
+  ],
+};
+
+const comsatsExperience: Experience = {
+  role: "Teaching Assistant — Software Engineering",
+  company: "COMSATS University Islamabad",
+  location: "Islamabad",
+  period: "Jan 2024 — Dec 2024",
+  tags: ["Software Engineering", "Teaching", "Academia"],
+  highlights: [
+    "Assisted in teaching Software Engineering concepts to 150+ undergraduate students and conducted assessment sessions",
+    "Created supplementary learning materials and tutorials, graded assignments, and provided academic guidance",
+  ],
+};
+
+const decimalExperience: Experience = {
+  role: "Front End Engineer (Intern)",
+  company: "Decimal Solution",
+  location: "Islamabad",
+  period: "Jan 2023 — Apr 2023",
+  tags: ["React.js", "Google Maps API", "Frontend"],
+  highlights: [
+    "Developed and enhanced user interfaces for various projects and integrated Google Maps tracking APIs into web applications",
+    "Collaborated with team members to implement and refine frontend features, tested and debugged UI components",
+  ],
+};
+
+// ── PM Mode Data ───────────────────────────────────────────────────────
+
+const pmData: PortfolioData = {
+  skills: [
+    { name: "Project Management", level: 92, color: "#F97316", icon: "📋" },
+    { name: "Agile / Scrum", level: 90, color: "#EF4444", icon: "🔄" },
+    { name: "Stakeholder Management", level: 88, color: "#8B5CF6", icon: "🤝" },
+    { name: "AI & Automation", level: 85, color: "#06B6D4", icon: "🤖" },
+    { name: "Cross-timezone Ops", level: 90, color: "#10B981", icon: "🌍" },
+    { name: "Technical Architecture", level: 82, color: "#3B82F6", icon: "🏗️" },
+  ],
+  tools: [
+    "Jira", "Confluence", "Notion", "Slack", "GitHub",
+    "Figma", "Trello", "Linear", "Loom", "VS Code",
+    "Python", "JavaScript", "Docker", "AWS", "Vercel",
+  ],
+  experiences: [axiomExperience],
+  projects: [
+    {
+      title: "Healthcare Platform — End-to-End Delivery",
+      description: "Led cross-functional team to deliver a HIPAA-compliant healthtech platform for a US startup. Managed sprint planning, stakeholder communication, and technical architecture decisions across 3 timezones.",
+      tags: ["Healthcare", "Agile", "HIPAA", "Remote"],
+      metrics: [
+        { value: "3", label: "Timezones Managed" },
+        { value: "On-time", label: "Delivery Status" },
+      ],
+      gradient: "from-violet-500/20 to-purple-500/20",
+      accentColor: "#8B5CF6",
+    },
+    {
+      title: "E-Commerce Suite — Platform Migration",
+      description: "Orchestrated migration of a legacy e-commerce platform to a modern microservices architecture. Coordinated backend, frontend, and DevOps teams while maintaining zero-downtime deployment.",
+      tags: ["E-Commerce", "Migration", "Microservices", "DevOps"],
+      metrics: [
+        { value: "0", label: "Downtime Hours" },
+        { value: "40%", label: "Performance Gain" },
+      ],
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      accentColor: "#06B6D4",
+    },
+    {
+      title: "FinTech Dashboard — Real-time Analytics",
+      description: "Managed the development of a real-time financial analytics dashboard. Defined requirements with stakeholders, prioritized backlog, and ensured compliance with financial data regulations.",
+      tags: ["FinTech", "Analytics", "Real-time", "Compliance"],
+      metrics: [
+        { value: "12", label: "Sprints Delivered" },
+        { value: "98%", label: "Stakeholder Satisfaction" },
+      ],
+      gradient: "from-emerald-500/20 to-green-500/20",
+      accentColor: "#10B981",
+    },
+    {
+      title: "SaaS DevTools — Agile Transformation",
+      description: "Spearheaded Agile transformation for a developer tools startup. Introduced Scrum ceremonies, set up Jira workflows, and improved team velocity by establishing clear sprint goals and retrospectives.",
+      tags: ["SaaS", "Agile", "Scrum", "DevTools"],
+      metrics: [
+        { value: "35%", label: "Velocity Increase" },
+        { value: "4", label: "Teams Onboarded" },
+      ],
+      gradient: "from-orange-500/20 to-amber-500/20",
+      accentColor: "#F97316",
+    },
+  ],
+  heroRoles: [
+    "Technical Project Manager",
+    "AI & Automation Specialist",
+    "Remote Team Leader",
+    "Agile Practitioner",
+  ],
+  heroSubtitle: "Passionate about <strong>AI-powered project delivery & Agile leadership</strong>. Bridging timezones and teams to ship products that matter — from planning to production.",
+  heroHighlights: [
+    { label: "1.5+ Yrs", sub: "Remote TPM" },
+    { label: "Fully Remote", sub: "US Clients" },
+    { label: "CS Graduate", sub: "COMSATS" },
+  ],
+  aboutHeading: ["Building the future,", "one sprint at a time"],
+  aboutParagraphs: [
+    "I'm a Computer Science graduate from COMSATS University Islamabad, currently serving as Technical Project Manager at Axiom Consulting (US-based, remote). I bring a unique blend of technical depth and project leadership — managing cross-functional teams across timezones while staying hands-on with AI & automation initiatives.",
+    "With expertise in Agile/Scrum methodologies, stakeholder management, and technical architecture, I bridge the gap between business goals and engineering execution. I've delivered 15+ projects across healthcare, fintech, e-commerce, and SaaS — all remotely, all on time.",
+  ],
+  stats: [
+    { target: 1.5, suffix: "+", label: "Years as TPM" },
+    { target: 15, suffix: "+", label: "Projects Delivered" },
+    { target: 6, suffix: "+", label: "Industry Verticals" },
+    { target: 100, suffix: "%", label: "Remote Track Record" },
+  ],
+  marqueeItems: [
+    "Technical Project Management", "Agile / Scrum", "AI Automation",
+    "Stakeholder Management", "Jira", "Cross-timezone Delivery",
+    "Sprint Planning", "Risk Management", "Remote Leadership", "Agentic AI",
+  ],
+  lookingForText: "Technical Project Management and AI-driven delivery roles where I can lead cross-functional teams remotely. I thrive in fast-paced environments that value clear communication, Agile practices, and technical depth.",
+  contactIntro: "Whether you're looking for a technical project manager who understands AI & automation, a remote team leader with hands-on engineering experience, or an Agile practitioner — I'd love to connect and explore opportunities.",
+  projectsSubtitle: "Delivering impactful solutions across healthcare, fintech, e-commerce, and developer tools — all managed end-to-end, remotely.",
+};
+
+// ── AI Mode Data ───────────────────────────────────────────────────────
+
+const aiData: PortfolioData = {
+  skills: [
+    { name: "AI & Machine Learning", level: 88, color: "#8B5CF6", icon: "🤖" },
+    { name: "Computer Vision", level: 85, color: "#06B6D4", icon: "👁️" },
+    { name: "Frontend Development", level: 90, color: "#3B82F6", icon: "🖥️" },
+    { name: "Data Science", level: 85, color: "#10B981", icon: "📊" },
+    { name: "Project Management", level: 92, color: "#F97316", icon: "📋" },
+    { name: "Agile / Scrum", level: 90, color: "#EF4444", icon: "🔄" },
+  ],
+  tools: [
+    "TensorFlow", "Keras", "PyTorch", "Scikit-learn", "OpenCV",
+    "Python", "JavaScript", "TypeScript", "React.js", "Next.js",
+    "Node.js", "React Native", "Tailwind CSS", "Redux", "Firebase",
+    "Pandas", "NumPy", "Matplotlib", "Git", "Jira",
+    "Figma", "Vercel", "Docker", "RESTful APIs", "Socket.io",
+  ],
+  experiences: [axiomExperience, quantumEdgeExperience, comsatsExperience, decimalExperience],
+  projects: [
+    {
+      title: "Human Emotion Detection using Deep Learning",
+      description: "Developed a CNN using TensorFlow/Keras to classify 7 emotions from facial expressions, achieving 85% accuracy. Built data preprocessing pipeline with OpenCV and deployed real-time system for live webcam feeds.",
+      tags: ["Deep Learning", "CNN", "TensorFlow", "OpenCV"],
+      metrics: [
+        { value: "85%", label: "Classification Accuracy" },
+        { value: "7", label: "Emotion Classes" },
+      ],
+      gradient: "from-violet-500/20 to-purple-500/20",
+      accentColor: "#8B5CF6",
+    },
+    {
+      title: "Real-time Object Detection System",
+      description: "Built a real-time object detection system using OpenCV and pre-trained YOLO models for live video streams. Optimized inference to achieve 25+ FPS with bounding box visualization and multi-object tracking.",
+      tags: ["Computer Vision", "YOLO", "OpenCV", "Real-time"],
+      metrics: [
+        { value: "25+", label: "FPS Achieved" },
+        { value: "Real-time", label: "Detection Speed" },
+      ],
+      gradient: "from-blue-500/20 to-cyan-500/20",
+      accentColor: "#06B6D4",
+    },
+    {
+      title: "Customer Churn Prediction",
+      description: "Analyzed 50,000+ customer records, performed data cleaning and feature engineering using Pandas/NumPy. Compared multiple ML algorithms and achieved 82% accuracy with Random Forest.",
+      tags: ["Machine Learning", "Data Science", "Python", "Plotly"],
+      metrics: [
+        { value: "82%", label: "Prediction Accuracy" },
+        { value: "50K+", label: "Records Analyzed" },
+      ],
+      gradient: "from-emerald-500/20 to-green-500/20",
+      accentColor: "#10B981",
+    },
+    {
+      title: "SkyNova — VR Platform",
+      description: "Developed interactive and immersive user interfaces for a VR flight platform. Ensured responsive design and cross-platform compatibility, integrating real-time data and collaborating with backend and VR teams.",
+      tags: ["React.js", "VR", "Real-time", "Cross-platform"],
+      metrics: [
+        { value: "1.5yr", label: "Development Span" },
+        { value: "3D", label: "Flight Experiences" },
+      ],
+      gradient: "from-orange-500/20 to-amber-500/20",
+      accentColor: "#F97316",
+    },
+  ],
+  heroRoles: [
+    "AI & Data Science Researcher",
+    "Frontend & AI Engineer",
+    "Technical Project Manager",
+    "Computer Vision Enthusiast",
+  ],
+  heroSubtitle: "Passionate about <strong>Machine Learning, Computer Vision & AI</strong>. Building intelligent systems that solve real-world problems through data-driven approaches — from research to production.",
+  heroHighlights: [
+    { label: "AI & ML", sub: "Researcher" },
+    { label: "Fully Remote", sub: "US Clients" },
+    { label: "CS Graduate", sub: "COMSATS" },
+  ],
+  aboutHeading: ["Exploring intelligence,", "one model at a time"],
+  aboutParagraphs: [
+    "I'm a Computer Science graduate from COMSATS University Islamabad with a deep passion for Machine Learning, Deep Learning, and Computer Vision. Currently serving as Technical Project Manager at Axiom Consulting (US-based, remote), while bringing hands-on experience as a Frontend & AI Engineer from Quantum Edge.",
+    "My research interests span Emotion Recognition, NLP, Predictive Analytics, and AI-driven Decision Systems. I build intelligent systems using TensorFlow, PyTorch, and OpenCV — from CNN-based emotion classifiers to real-time object detection with YOLO. I bridge the gap between research and production.",
+  ],
+  stats: [
+    { target: 3, suffix: "+", label: "Years Experience" },
+    { target: 15, suffix: "+", label: "Projects Delivered" },
+    { target: 3, suffix: "", label: "Certifications" },
+    { target: 100, suffix: "%", label: "Remote Track Record" },
+  ],
+  marqueeItems: [
+    "Machine Learning", "Deep Learning", "Computer Vision", "TensorFlow",
+    "React.js", "Next.js", "Technical Project Management", "Agile / Scrum",
+    "Data Science", "Python", "Natural Language Processing", "AI Automation",
+  ],
+  lookingForText: "AI/ML research and engineering roles focused on Computer Vision, Deep Learning, and NLP. Open to both research positions and applied AI engineering. I thrive in environments where I can develop intelligent systems that solve real-world problems through data-driven approaches.",
+  contactIntro: "Whether you're looking for an AI/ML researcher, a frontend engineer with AI expertise, or a technical project manager — I'd love to connect and explore opportunities.",
+  projectsSubtitle: "From emotion detection to real-time computer vision — building intelligent systems that push the boundaries of AI research and application.",
+};
+
+// ── Accessor ───────────────────────────────────────────────────────────
+
+export function getPortfolioData(mode: PortfolioMode): PortfolioData {
+  return mode === "ai" ? aiData : pmData;
+}

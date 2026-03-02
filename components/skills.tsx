@@ -2,24 +2,29 @@
 
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { Target, Briefcase, Code, Settings, Users, Brain, Globe } from "lucide-react";
+import { Target, Briefcase, Code, Settings, Brain, Globe, Eye, Monitor, BarChart3, Users, Zap, Building2 } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import { skills, tools } from "@/data/portfolio";
+import { useModeData } from "@/hooks/use-mode-data";
+import type { Skill } from "@/data/portfolio";
 
 const skillIcons: Record<string, typeof Briefcase> = {
+  "AI & Machine Learning": Brain,
+  "Computer Vision": Eye,
+  "Frontend Development": Monitor,
+  "Data Science": BarChart3,
   "Project Management": Briefcase,
   "Agile / Scrum": Settings,
-  "Stakeholder Mgmt": Users,
-  "AI & Automation": Brain,
+  "Stakeholder Management": Users,
+  "AI & Automation": Zap,
   "Cross-timezone Ops": Globe,
-  "Technical Architecture": Code,
+  "Technical Architecture": Building2,
 };
 
 function SkillCard({
   skill,
   index,
 }: {
-  skill: (typeof skills)[number];
+  skill: Skill;
   index: number;
 }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -100,6 +105,8 @@ function ToolTag({ tool, index }: { tool: string; index: number }) {
 }
 
 export function Skills() {
+  const { skills, tools, lookingForText } = useModeData();
+
   return (
     <section id="skills" className="py-[120px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
@@ -117,7 +124,7 @@ export function Skills() {
         {/* Skills Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {skills.map((skill, i) => (
-            <SkillCard key={i} skill={skill} index={i} />
+            <SkillCard key={skill.name} skill={skill} index={i} />
           ))}
         </div>
 
@@ -131,7 +138,7 @@ export function Skills() {
             </Section>
             <div className="flex flex-wrap gap-2.5">
               {tools.map((tool, i) => (
-                <ToolTag key={i} tool={tool} index={i} />
+                <ToolTag key={tool} tool={tool} index={i} />
               ))}
             </div>
           </div>
@@ -148,11 +155,7 @@ export function Skills() {
                   </span>
                 </div>
                 <p className="text-muted text-sm leading-[1.75]">
-                  Remote TPM or engineering roles at early-to-mid-stage startups
-                  (Seed → Series B) building in AI, SaaS, developer tools, or
-                  automation. Open to both project management and hands-on coding
-                  positions. I thrive in environments where I can learn, ship, and
-                  make a real impact.
+                  {lookingForText}
                 </p>
               </div>
             </Section>
