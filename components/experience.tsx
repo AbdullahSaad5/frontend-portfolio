@@ -42,7 +42,7 @@ export function Experience() {
 
           {experiences.map((exp, idx) => (
             <Section key={idx} delay={0.15} variant="scale">
-                <div className="flex gap-8 p-8 md:p-12 rounded-[20px] bento-card relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,115,22,0.08)] md:ml-14">
+                <div className="flex my-2 gap-8 p-8 md:p-12 rounded-[20px] bento-card relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,115,22,0.08)] md:ml-14">
                   {/* Timeline dot - positioned at the left edge on desktop */}
                   <div className="hidden md:block absolute -left-[calc(56px+7px)] top-10">
                     <div className="timeline-dot w-3.5 h-3.5 rounded-full border-2 border-primary bg-dark relative z-[2]" />
