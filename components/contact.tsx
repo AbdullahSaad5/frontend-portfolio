@@ -60,7 +60,7 @@ function LiveClock() {
 }
 
 export function Contact() {
-  const { contactIntro } = useModeData();
+  const { contactIntro, resumePath } = useModeData();
 
   return (
     <section id="contact" className="py-[120px] px-6 md:px-10 relative overflow-hidden">
@@ -159,7 +159,7 @@ export function Contact() {
               </a>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <a href="/EIsha CV.pdf" download className="no-underline">
+              <a href={resumePath} download className="no-underline">
                 <motion.div
                   className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-muted-dark hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -3, scale: 1.1 }}

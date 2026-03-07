@@ -53,6 +53,7 @@ export interface PortfolioData {
   lookingForText: string;
   contactIntro: string;
   projectsSubtitle: string;
+  resumePath: string;
 }
 
 // ── Shared (mode-independent) ──────────────────────────────────────────
@@ -188,7 +189,7 @@ const pmData: PortfolioData = {
     "Figma", "Trello", "Linear", "Loom", "VS Code",
     "Python", "JavaScript", "Docker", "AWS", "Vercel",
   ],
-  experiences: [axiomExperience],
+  experiences: [axiomExperience, comsatsExperience, decimalExperience],
   projects: [
     {
       title: "Healthcare Platform — End-to-End Delivery",
@@ -266,6 +267,7 @@ const pmData: PortfolioData = {
   lookingForText: "Technical Project Management and AI-driven delivery roles where I can lead cross-functional teams remotely. I thrive in fast-paced environments that value clear communication, Agile practices, and technical depth.",
   contactIntro: "Whether you're looking for a technical project manager who understands AI & automation, a remote team leader with hands-on engineering experience, or an Agile practitioner — I'd love to connect and explore opportunities.",
   projectsSubtitle: "Delivering impactful solutions across healthcare, fintech, e-commerce, and developer tools — all managed end-to-end, remotely.",
+  resumePath: "/Eisha Kamran Resume Feb 2025.pdf",
 };
 
 // ── AI Mode Data ───────────────────────────────────────────────────────
@@ -364,6 +366,7 @@ const aiData: PortfolioData = {
   lookingForText: "AI/ML research and engineering roles focused on Computer Vision, Deep Learning, and NLP. Open to both research positions and applied AI engineering. I thrive in environments where I can develop intelligent systems that solve real-world problems through data-driven approaches.",
   contactIntro: "Whether you're looking for an AI/ML researcher, a frontend engineer with AI expertise, or a technical project manager — I'd love to connect and explore opportunities.",
   projectsSubtitle: "From emotion detection to real-time computer vision — building intelligent systems that push the boundaries of AI research and application.",
+  resumePath: "/EIsha CV.pdf",
 };
 
 // ── Accessor ───────────────────────────────────────────────────────────
