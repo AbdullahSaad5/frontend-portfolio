@@ -90,6 +90,7 @@ export const education = {
     "Software Engineering",
     "Data Structures & Algorithms",
     "Database Systems",
+    "Web Development",
   ],
 };
 
@@ -166,10 +167,24 @@ const decimalExperience: Experience = {
   company: "Decimal Solution",
   location: "Islamabad",
   period: "Jan 2023 — Apr 2023",
-  tags: ["React.js", "Google Maps API", "Frontend"],
+  tags: ["Next.js", "React.js", "Google Maps API", "Frontend"],
   highlights: [
     "Developed and enhanced user interfaces for various projects and integrated Google Maps tracking APIs into web applications",
     "Collaborated with team members to implement and refine frontend features, tested and debugged UI components",
+  ],
+};
+
+const personalWebDevExperience: Experience = {
+  role: "Web Developer — Personal Projects",
+  company: "Personal / Open Source",
+  location: "Remote",
+  period: "2022 — Present",
+  tags: ["MERN Stack", "Next.js", "Tailwind CSS", "Firebase"],
+  highlights: [
+    "Built a personal portfolio website using Next.js, TypeScript, Tailwind CSS, and Framer Motion with dynamic content switching",
+    "Developed a full-stack task management app with React, Node.js, Express, and MongoDB featuring real-time updates via Socket.io",
+    "Created a blog platform with Next.js, Markdown rendering, and Firebase authentication and hosting",
+    "Built an e-commerce storefront with React, Redux, Stripe integration, and a Node.js/Express backend",
   ],
 };
 
@@ -183,23 +198,36 @@ const pmData: PortfolioData = {
     { name: "AI & Automation", level: 85, color: "#06B6D4", icon: "🤖" },
     { name: "Cross-timezone Ops", level: 90, color: "#10B981", icon: "🌍" },
     { name: "Technical Architecture", level: 82, color: "#3B82F6", icon: "🏗️" },
+    { name: "React / Next.js", level: 80, color: "#61DAFB", icon: "⚛️" },
+    { name: "TypeScript", level: 78, color: "#3178C6", icon: "📘" },
+    { name: "Tailwind CSS", level: 82, color: "#38BDF8", icon: "🎨" },
+    { name: "JavaScript", level: 80, color: "#F7DF1E", icon: "⚡" },
+    { name: "REST APIs", level: 78, color: "#FF6B6B", icon: "🔗" },
+    { name: "Responsive Design", level: 80, color: "#A855F7", icon: "📱" },
+    { name: "MongoDB", level: 78, color: "#47A248", icon: "🍃" },
+    { name: "Express.js", level: 76, color: "#000000", icon: "🚂" },
+    { name: "Node.js", level: 80, color: "#339933", icon: "🟢" },
+    { name: "Mongoose / ODM", level: 75, color: "#880000", icon: "🗄️" },
   ],
   tools: [
     "Jira", "Confluence", "Notion", "Slack", "GitHub",
     "Figma", "Trello", "Linear", "Loom", "VS Code",
     "Python", "JavaScript", "Docker", "AWS", "Vercel",
+    "MongoDB", "Express.js", "React", "Node.js", "Next.js",
+    "TypeScript", "Tailwind CSS", "Postman", "Firebase", "Redux",
+    "Mongoose", "npm", "Git", "REST APIs"
   ],
-  experiences: [axiomExperience, comsatsExperience, decimalExperience],
+  experiences: [axiomExperience, quantumEdgeExperience, comsatsExperience, decimalExperience, personalWebDevExperience],
   projects: [
     {
-      title: "Healthcare Platform — End-to-End Delivery",
-      description: "Led cross-functional team to deliver a HIPAA-compliant healthtech platform for a US startup. Managed sprint planning, stakeholder communication, and technical architecture decisions across 3 timezones.",
-      tags: ["Healthcare", "Agile", "HIPAA", "Remote"],
+      title: "SkyNova — VR Platform",
+      description: "Developed interactive and immersive user interfaces for a VR flight platform. Ensured responsive design and cross-platform compatibility, integrating real-time data and collaborating with backend and VR teams.",
+      tags: ["React.js", "VR", "Real-time", "Cross-platform"],
       metrics: [
-        { value: "3", label: "Timezones Managed" },
-        { value: "On-time", label: "Delivery Status" },
+        { value: "1.5yr", label: "Development Span" },
+        { value: "3D", label: "Flight Experiences" },
       ],
-      gradient: "from-violet-500/20 to-purple-500/20",
+      gradient: "from-orange-500/20 to-amber-500/20",
       accentColor: "#8B5CF6",
     },
     {
@@ -264,8 +292,8 @@ const pmData: PortfolioData = {
     "Stakeholder Management", "Jira", "Cross-timezone Delivery",
     "Sprint Planning", "Risk Management", "Remote Leadership", "Agentic AI",
   ],
-  lookingForText: "Technical Project Management and AI-driven delivery roles where I can lead cross-functional teams remotely. I thrive in fast-paced environments that value clear communication, Agile practices, and technical depth.",
-  contactIntro: "Whether you're looking for a technical project manager who understands AI & automation, a remote team leader with hands-on engineering experience, or an Agile practitioner — I'd love to connect and explore opportunities.",
+  lookingForText: "Entry-level Technical Project Management and Frontend Engineering roles where I can apply my CS background, Agile knowledge, and MERN stack skills. Eager to grow in fast-paced environments that value hands-on technical understanding, clear communication, and a passion for bridging engineering and project delivery.",
+  contactIntro: "Whether you're looking for a junior technical project manager with a strong CS foundation, a MERN stack developer eager to contribute, or someone who can bridge the gap between code and coordination — I'd love to connect and explore opportunities.",
   projectsSubtitle: "Delivering impactful solutions across healthcare, fintech, e-commerce, and developer tools — all managed end-to-end, remotely.",
   resumePath: "/Eisha Kamran Resume Feb 2025.pdf",
 };
@@ -363,8 +391,8 @@ const aiData: PortfolioData = {
     "React.js", "Next.js", "Technical Project Management", "Agile / Scrum",
     "Data Science", "Python", "Natural Language Processing", "AI Automation",
   ],
-  lookingForText: "AI/ML research and engineering roles focused on Computer Vision, Deep Learning, and NLP. Open to both research positions and applied AI engineering. I thrive in environments where I can develop intelligent systems that solve real-world problems through data-driven approaches.",
-  contactIntro: "Whether you're looking for an AI/ML researcher, a frontend engineer with AI expertise, or a technical project manager — I'd love to connect and explore opportunities.",
+  lookingForText: "Frontend Engineering and Technical Project Management roles where I can combine hands-on MERN stack development with AI/ML expertise. Open to positions that value building intelligent, user-facing applications while leading cross-functional teams. I thrive in environments where I can ship production code and drive project delivery end-to-end.",
+  contactIntro: "Whether you're looking for a frontend engineer with AI/ML expertise, a MERN stack developer who understands intelligent systems, or a technical project manager who ships code — I'd love to connect and explore opportunities.",
   projectsSubtitle: "From emotion detection to real-time computer vision — building intelligent systems that push the boundaries of AI research and application.",
   resumePath: "/EIsha CV.pdf",
 };
