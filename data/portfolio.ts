@@ -295,7 +295,7 @@ const pmData: PortfolioData = {
   lookingForText: "Entry-level Technical Project Management and Frontend Engineering roles where I can apply my CS background, Agile knowledge, and MERN stack skills. Eager to grow in fast-paced environments that value hands-on technical understanding, clear communication, and a passion for bridging engineering and project delivery.",
   contactIntro: "Whether you're looking for a junior technical project manager with a strong CS foundation, a MERN stack developer eager to contribute, or someone who can bridge the gap between code and coordination — I'd love to connect and explore opportunities.",
   projectsSubtitle: "Delivering impactful solutions across healthcare, fintech, e-commerce, and developer tools — all managed end-to-end, remotely.",
-  resumePath: "/Eisha Kamran Resume Feb 2025.pdf",
+  resumePath: "/EishaKamranResume-TPM-PM.pdf",
 };
 
 // ── AI Mode Data ───────────────────────────────────────────────────────
