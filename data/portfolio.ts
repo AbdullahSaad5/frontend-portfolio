@@ -112,7 +112,7 @@ export const navItems = [
 export const contactInfo = [
   { label: "Location", value: "Islamabad, Pakistan" },
   { label: "Timezone", value: "PKT (GMT+5)" },
-  { label: "Availability", value: "Flexible / US hours" },
+  { label: "Availability", value: "Flexible" },
 ];
 
 export const socialLinks = [
